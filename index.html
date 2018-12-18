@@ -1,11 +1,49 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <title>BlackJack</title>
     <link rel="stylesheet" href="CSS/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Cinzel" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Cinzel|Sedgwick+Ave+Display" rel="stylesheet">
 </head>
 <body>
-
+<div id="contener">
+    <div id="bandeau">
+        <span id="vide"></span>
+        <h1>Blagues Jacques</h1>
+        <ul id="menu">
+            <li>Accueil</li>
+            <li>Jouer</li>
+            <li>Banque</li>
+            <li>Règles</li>
+        </ul>
+    </div>
+    <div id="zoneJeu">
+        <div id="zoneCagnotte">
+            <div id="texteCagnotte">
+                <p class="texte">Cagnotte</p>
+                <p id="cagnotte"></p>
+            </div>
+        </div>
+        <div id="zoneTapisBouton">
+            <canvas id="zoneTapis"></canvas>
+            <ul id="zoneBouton">
+                <li id="split">Split</li>
+                <li id="double">Double</li>
+                <li id="carte">Carte</li>
+                <li id="passe">Passe</li>
+            </ul>
+        </div>
+        <div id="zoneMise">
+            <ul id="mise">
+                <li id="mise1">10</li>
+                <li id="mise2">20</li>
+                <li id="mise5">50</li>
+                <li id="mise10">100</li>
+            </ul>
+        </div>
+    </div>
+</div>
 </body>
 </html>

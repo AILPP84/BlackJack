@@ -1,0 +1,105 @@
+#contener{
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+    background-color: red;
+    background-size: 100% auto;
+    border: 1px solid white;
+}
+
+#bandeau{
+    width: 100%;
+    display: flex;
+    border: 1px solid white;
+    justify-content: space-between;
+    background-color: #7a2a1d;
+}
+
+h1{
+    font-family: 'Cinzel', serif;
+    color: white;
+}
+
+ul{
+    list-style: none;
+    display: inline-flex;
+    justify-content: space-around;
+}
+
+li{
+    padding: 0 10px 0 10px;
+    font-size: 1.5em;
+}
+
+#menu{
+    padding-top : 50px;
+}
+
+#zoneJeu{
+    width: 100%;
+    height: 600px;
+    display: flex;
+    justify-content: center;
+}
+
+#zoneCagnotte{
+    width: 20%;
+    background-color: #9fb4f2;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+#texteCagnotte{
+    display: block;
+    align-content: flex-end;
+}
+
+.texte{
+    font-family: 'Cinzel', serif;
+    font-size: 1.5em;
+    padding: 0;
+    margin-bottom: 0;
+
+}
+
+#cagnotte{
+    font-family: Abel;
+    font-size: 1.5em;
+    background-color: black;
+    border: 4px inset silver;
+    height: 35px;
+    width: 200px;
+    text-align: right;
+    margin: 0;
+    padding: 0;
+    color: white;
+}
+
+#zoneTapisBouton{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    background-color: #f438ff;
+}
+
+#zoneTapis{
+    background-color: chartreuse;
+}
+
+#zoneBouton{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    background-color: #6dfff3;
+}
+
+#zoneMise{
+    width:20%;
+    background-color: #9fb4f2;
+}
+
+#mise{
+    display: flex;
+    flex-direction: column-reverse;
+}
