@@ -7,10 +7,10 @@
     justify-content: center;
     display: flex;
     flex-wrap: wrap;
-    background-color: red;
-    background-size: 100% auto;
     border: 1px solid white;
     font-family: 'Cinzel', serif;
+    background-image: url('../IMAGES/bckbandeau.jpg');
+    background-repeat: repeat;
 }
 
 
@@ -20,10 +20,17 @@
 
 #bandeau {
     width: 100%;
+    height: auto;
     display: flex;
     border: 1px solid white;
     justify-content: space-between;
-    background-color: #7a2a1d;
+}
+
+#logo{
+    height: 100px;
+    width: auto;
+    margin: 0 0 0 10px;
+    padding: 10px;
 }
 
 h1 {
@@ -31,11 +38,11 @@ h1 {
     color: white;
 }
 
-ul {
-    list-style: none;
-    display: inline-flex;
-    justify-content: space-around;
-}
+/*ul {*/
+
+    /*display: inline-flex;*/
+    /*justify-content: space-around;*/
+/*}*/
 
 li {
     padding: 0 10px 0 10px;
@@ -43,7 +50,13 @@ li {
 }
 
 #menu {
-    padding-top: 50px;
+    font-weight: bolder;
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: 10px;
+    padding-right: 50px;
+    list-style: none;
+    justify-content: space-around;
 }
 
 
@@ -52,9 +65,13 @@ li {
 *************************************/
 #zoneJeu {
     width: 100%;
-    height: 600px;
+    height: 550px;
     display: flex;
     justify-content: center;
+    background-image: url("../IMAGES/tablePoker.png");
+    background-repeat: round;
+    background-size: cover;
+
 }
 
 
@@ -67,13 +84,17 @@ li {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    padding: 0 0 25px 25px;
+    padding: 0 0 10px 25px;
+    background-image: url('../IMAGES/argent.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 #texteCagnotte {
     display: block;
     align-content: flex-end;
     justify-items: left;
+    color: white;
 }
 
 .memeligne{
@@ -116,31 +137,36 @@ li {
     flex-direction: column;
     justify-content: flex-end;
     flex: 1;
-    background-color: #f438ff;
 }
 
 #zoneTapis {
-    background-color: chartreuse;
     flex: 1;
 }
 
 #zoneBouton {
     display: flex;
     justify-content: center;
-    flex-wrap: wrap;
-    background-color: #6dfff3;
+    flex-wrap: nowrap;
+    list-style: none;
 }
 
 #zoneBouton li button{
     background-color: red;
-    width: 80px;
-    height: 80px;
+    width: 50px;
+    height: 50px;
     border-radius: 40px;
-    font-size: 1em;
+    font-size: .6em;
     font-family: "numerique", serif;
     margin: 10px 0 10px 0;
     box-shadow: 0 5px 0 #ae100e;
     outline: none;
+}
+
+#zoneBouton li button:active{
+    box-shadow: none;
+    position: relative;
+    top: 5px;
+    color: greenyellow;
 }
 
 /*************************************
@@ -156,16 +182,23 @@ li {
 *************************************/
 #zoneMise {
     width: 20%;
-    background-color: #9fb4f2;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
+    align-items: center;
+    background-image: url('../IMAGES/jetons.png');
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 #mise {
     display: flex;
     flex-direction: column-reverse;
-    align-items: center;
+    list-style: none;
+}
+
+#mise ul{
+    justify-content: inherit;
 }
 
 #mise button {
@@ -184,4 +217,24 @@ li {
     box-shadow: none;
     position: relative;
     top: 5px;
+    color: greenyellow;
+}
+
+#valider{
+    background-color: red;
+    width: 100px;
+    height: 50px;
+    border-radius: 10px;
+    font-size: 1.5em;
+    font-family: "numerique", serif;
+    margin: 5px 0 15px 40px;
+    box-shadow: 0 5px 0 #ae100e;
+    outline: none;
+}
+
+#valider:active{
+    box-shadow: none;
+    position: relative;
+    top: 5px;
+    color: greenyellow;
 }
