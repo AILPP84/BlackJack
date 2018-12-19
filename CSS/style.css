@@ -1,3 +1,5 @@
+
+
 #contener{
     justify-content: center;
     display: flex;
@@ -6,6 +8,11 @@
     background-size: 100% auto;
     border: 1px solid white;
 }
+
+
+/*************************************
+************** BANDEAU ***************
+*************************************/
 
 #bandeau{
     width: 100%;
@@ -35,6 +42,10 @@ li{
     padding-top : 50px;
 }
 
+
+/*************************************
+************** ZONE JEU **************
+*************************************/
 #zoneJeu{
     width: 100%;
     height: 600px;
@@ -42,12 +53,17 @@ li{
     justify-content: center;
 }
 
+
+/*************************************
+*********** ZONE CAGNOTTE ************
+*************************************/
 #zoneCagnotte{
     width: 20%;
     background-color: #9fb4f2;
     display: flex;
-    flex-wrap: wrap;
     flex-direction: column;
+    justify-content: flex-end;
+    padding: 0 0 25px 25px;
 }
 
 #texteCagnotte{
@@ -76,15 +92,21 @@ li{
     color: white;
 }
 
+
+/*************************************
+*********** TAPIS BOUTON *************
+*************************************/
 #zoneTapisBouton{
     display: flex;
     flex-direction: column;
+    justify-content: flex-end;
     flex: 1;
     background-color: #f438ff;
 }
 
 #zoneTapis{
     background-color: chartreuse;
+    flex: 1;
 }
 
 #zoneBouton{
@@ -94,9 +116,16 @@ li{
     background-color: #6dfff3;
 }
 
+
+/*************************************
+************* ZONE MISE **************
+*************************************/
 #zoneMise{
     width:20%;
     background-color: #9fb4f2;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
 }
 
 #mise{
