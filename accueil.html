@@ -1,0 +1,113 @@
+// creer un fichier html appelé accueil.html et y insérer ceci :   
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>BlackJack</title>
+    <link rel="stylesheet" href="CSS/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Cinzel" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Cinzel|Sedgwick+Ave+Display" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR%7CZCOOL+QingKe+HuangYou" rel="stylesheet">
+</head>
+<body>
+<div id="contener">
+    <div id="bandeau">
+        <img id="logo" src="IMAGES/logo.png">
+        <h1>Blagues Jacques</h1>
+        <div id="menu">
+            <a href="accueil.html">Accueil</a>
+            <a href="index.html">Jouer</a>
+            <a href="http://clippss.free.fr/argent/7%20(4).gif" target="_blank">Banque</a>
+            <a href="#" id="boutonregles">Règles</a>
+            <div class="Regles">
+
+                <ul>
+                    <li>- Règles du Black Jack</li>
+                    <li>Le blackjack (forme américaine) est un jeu de cartes qui consiste à comptabiliser avec tes cartes plus de points
+                        que le croupier sans dépasser 21. Si avec les 2 premières cartes, le joueur obtient 21 points, c’est un
+                        “blackjack”.</li>
+                    <li>- La valeur des cartes :</li>
+                    <li>“L’As” vaut 1 ou 11 points.
+                        Le “J”, “Q” et le “K” valent 10 points.
+                        Le reste des cartes, sa propre valeur.</li>
+                    <li>- Comment jouer au Blackjack :</li>
+                    <li>Splitter -> Quand les 2 premières cartes sont de la même valeur, il est possible de les partager en 2 mains
+                        indépendantes avec chaque sa propre mise.
+                        Si un split est réalisé avec 2 As, une seule carte sera tirée pour chaque main et le tour se terminera.
+                        Après avoir splitter, il n’est pas possible de faire “Blackjack”.
+                        Ce mode permet seulement de splitter une seule fois.</li>
+                    <li>Doubler -> Un joueur peut doubler la mise s’il a 9, 10, ou 11 points. Si l’action est réalisée, le croupier
+                        distribue une carte en plus au joueur et le tour se termine.</li>
+                    <li>Passer -> Le joueur peut se retirer avant de réaliser n’importe quelle action. Il récupère la moitié de sa mise.</li>
+                    <li>- Le croupier :</li>
+                    <li>Quand chaque joueur de la table a terminé son tour cela sera au croupier de jouer. Il est obligé de s’auto-
+                        distribuer des cartes jusqu’à qu’il ait atteint un minimum de 17 points. Il ne peut pas doubler, ni diviser,
+                        ni abandonner, ni assurer une mise.</li>
+                    <li>Pour terminer, chaque joueur reçoit ou pas sa mise en fonction de s’il a réussi ou pas à dépasser le croupier.
+                        En cas d’égalité, le joueur récupèrera sa mise. Le cas où un joueur et le croupier réalisnt tous les deux un
+                        Blackjack sera également considéré comme une égalité.</li>
+                    <li>- Les mises :</li>
+                    <li>Une main gagnante paye à 1:1 de la mise initiale</li>
+                    <li>Le Blackjack paye à 3:2 de la mise initiale.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div id="zoneJeu">
+        <div id="zoneCagnotte">
+            <img src="IMAGES/jetonMax.png" alt="">
+            <!--<div id="texteCagnotte">-->
+            <!--<div class="memeligne">-->
+            <p id="cagnotte">0€</p>
+            <!--<p id="monnaie">€</p>-->
+            <!--</div>-->
+            <!--</div>-->
+        </div>
+        <div id="zoneTapisBouton">
+
+            <div id="zoneTapis">
+                <h1 class="bienvenue">Bienvenue</h1>
+                <!--<div class="bot">-->
+                    <!--<p id="paquet"></p>-->
+                    <!--<p id="jeuBot"></p>-->
+                <!--</div>-->
+                <!--<div class="joueur">-->
+                    <!--<p id="mise1"></p>-->
+                    <!--<p id="jeu1Joueur"></p>-->
+                    <!--<p id="jeu2Joueur"></p>-->
+                    <!--<p id="mise2"></p>-->
+                <!--</div>-->
+                <!--<span id="messageFin"></span>-->
+            </div>
+
+            <!--<ul id="zoneBouton">-->
+                <!--<li id="split"><button type="button">Split</button></li>-->
+                <!--<li id="double"><button type="button">Double</button></li>-->
+                <!--<li id="carte"><button type="button">Carte</button></li>-->
+                <!--<li id="passe"><button type="button">Passe</button></li>-->
+            <!--</ul>-->
+        </div>
+        <div id="zoneMise">
+            <ul id="mise">
+                <li id="mise10">
+                    <button type="button">10</button>
+                </li>
+                <li id="mise20">
+                    <button type="button">20</button>
+                </li>
+                <li id="mise50">
+                    <button type="button">50</button>
+                </li>
+                <li id="mise100">
+                    <button type="button">100</button>
+                </li>
+            </ul>
+            <!--<button id="valider" type="button">Jouer</button>-->
+            <!--<button id="rejouer" type="button">Rejouer</button>-->
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>

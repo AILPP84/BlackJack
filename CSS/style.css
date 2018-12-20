@@ -27,7 +27,7 @@
     justify-content: space-between;
 }
 
-#logo{
+#logo {
     height: 100px;
     width: auto;
     margin: 0 0 0 10px;
@@ -41,13 +41,20 @@ h1 {
 
 /*ul {*/
 
-    /*display: inline-flex;*/
-    /*justify-content: space-around;*/
+/*display: inline-flex;*/
+/*justify-content: space-around;*/
 /*}*/
 
 li {
     padding: 0 10px 0 10px;
     font-size: 1.5em;
+}
+
+a {
+    padding: 0 10px 0 10px;
+    font-size: 1.5em;
+    text-decoration: none;
+    color: black;
 }
 
 #menu {
@@ -60,6 +67,35 @@ li {
     justify-content: space-around;
 }
 
+.Regles {
+    position: absolute;
+    top: 10%;
+    opacity: 0;
+    border: 1px dotted black;
+    border-radius: 5px 5px 5px 5px;
+    font-size: 8px;
+    font-weight: bold;
+    background-color: rgba(192, 192, 192, 0.7);
+    padding: 1px;
+    font-family: 'Noto Sans KR', sans-serif;
+    z-index: auto;
+}
+
+.Regles li {
+    list-style: none;
+}
+
+#boutonregles {
+    padding: 0 10px 0 10px;
+    font-size: 1.5em;
+    text-decoration: none;
+    color: black;
+}
+
+#boutonregles:hover + .Regles {
+    opacity: 1;
+    z-index: 150;
+}
 
 /*************************************
 ************** ZONE JEU **************
@@ -70,9 +106,7 @@ li {
     min-height: 450px;
     display: flex;
     justify-content: center;
-    /*background-image: url("../IMAGES/tablePoker.png");*/
-    /*background-repeat: round;*/
-    /*background-size: cover;*/
+    z-index: 1;
 }
 
 
@@ -90,30 +124,11 @@ li {
     align-items: center;
 }
 
-#zoneCagnotte img{
+#zoneCagnotte img {
     width: 100%;
     height: auto;
     margin: 25px;
 }
-
-/*#texteCagnotte {*/
-    /*!*margin: -150px 0 0 25px;*!*/
-    /*display: block;*/
-    /*align-content: flex-end;*/
-    /*color: white;*/
-/*}*/
-
-/*.memeligne{*/
-    /*display: flex;*/
-    /*flex-wrap: nowrap;*/
-/*}*/
-
-/*.texte {*/
-    /*font-family: 'Cinzel', serif;*/
-    /*font-size: 1.5em;*/
-    /*padding: 0;*/
-    /*margin-bottom: 0;*/
-/*}*/
 
 #cagnotte {
     font-family: "numerique", serif;
@@ -128,20 +143,77 @@ li {
     margin-top: -100px;
 }
 
-/*#monnaie {*/
-    /*font-size: 2em;*/
-    /*margin: 0 0 0 5px;*/
-/*}*/
-
 
 /*************************************
 *********** TAPIS BOUTON *************
 *************************************/
+
+#zoneTapis {
+    display: block;
+    height: 70vh;
+}
+
+.bot {
+    /*margin: 0;*/
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+#jeuBot{
+    /*margin: 0;*/
+}
+
+.joueur {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.joueur1 {
+    width: 100%;
+    display: inline-flex;
+    justify-content: center;
+}
+
+#mise1{
+    margin: 40px 0 0 0;
+    max-width: 200px;
+    max-height: 70px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+}
+
+#mise1 img{
+    margin: -20px 0 0 -30px;
+    padding:2px;
+}
+
+#jeu1Joueur img{
+    padding:5px;
+}
+
+.joueur2 {
+    display: inline-flex;
+    justify-content: center;
+}
+
+#messageFin {
+    background-color: rgba(248, 248, 255, 0.5);
+    font-family: Arial;
+}
+
 #zoneTapisBouton {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     flex: 1;
+    align-items: center;
 }
 
 #zoneTapis {
@@ -155,7 +227,7 @@ li {
     list-style: none;
 }
 
-#zoneBouton li button{
+#zoneBouton li button {
     /*background-color: red;*/
     /*width: 50px;*/
     /*height: 50px;*/
@@ -179,7 +251,7 @@ li {
     outline: none;
 }
 
-#zoneBouton li button:active{
+#zoneBouton li button:active {
     /*box-shadow: none;*/
     /*position: relative;*/
     /*top: 5px;*/
@@ -188,14 +260,6 @@ li {
     position: relative;
     top: 5px;
     color: greenyellow;
-}
-
-/*************************************
-************* ZONE MISE **************
-*************************************/
-#split{
-
-
 }
 
 /*************************************
@@ -215,7 +279,7 @@ li {
     list-style: none;
 }
 
-#mise ul{
+#mise ul {
     justify-content: inherit;
 }
 
@@ -267,30 +331,30 @@ li {
     outline: none;
 }
 
-#mise10 button{
+#mise10 button {
     background-image: url("../IMAGES/jeton_jaune.png");
 }
 
-#mise20 button{
+#mise20 button {
     background-image: url("../IMAGES/jeton_rouge.png");
 }
 
-#mise50 button{
+#mise50 button {
     background-image: url("../IMAGES/jeton_vierge.png");
 }
 
-#mise100 button{
+#mise100 button {
     background-image: url("../IMAGES/jeton_vert.png");
 }
 
-#mise button:active{
+#mise button:active {
     box-shadow: none;
     position: relative;
     top: 7px;
     color: greenyellow;
 }
 
-#valider{
+#valider {
     color: white;
     background-image: url("../IMAGES/jouer.png");
     background-size: contain;
@@ -305,9 +369,52 @@ li {
     outline: none;
 }
 
-#valider:active{
+#valider:active {
     box-shadow: none;
     position: relative;
     top: 7px;
     color: greenyellow;
+}
+
+#rejouer {
+    color: white;
+    background-image: url("../IMAGES/jouer.png");
+    background-size: contain;
+    background-repeat: round;
+    width: 125px;
+    height: 70px;
+    border-radius: 10px;
+    font-size: 1.5em;
+    font-family: "numerique", serif;
+    margin: 5px 0 30px 40px;
+    box-shadow: 0 5px 0 #439216;
+    outline: none;
+}
+
+#rejouer:active {
+    box-shadow: none;
+    position: relative;
+    top: 7px;
+    color: greenyellow;
+}
+
+/*************************************
+*************** FOOTER ***************
+*************************************/
+
+footer {
+    text-align: center;
+    font-family: "Tahoma", serif;
+    font-size: 12px;
+}
+
+/*************************************
+************* BIENVENUE **************
+*************************************/
+
+.bienvenue {
+    font-family: 'Cinzel', serif;
+    font-size: 130px;
+    color: red;
+    text-shadow: 5px 5px darkslategrey;
 }
