@@ -201,34 +201,89 @@ li {
     justify-content: inherit;
 }
 
-#mise button {
-    background-color: red;
+#mise10 button {
+    background-size: contain;
     width: 70px;
     height: 70px;
     border-radius: 35px;
-    font-size: 1.5em;
+    font-size: 1em;
     font-family: "numerique", serif;
     margin: 5px;
-    box-shadow: 0 5px 0 #ae100e;
+    box-shadow: 0 7px 0 #a5a5a5;
     outline: none;
+}
+
+#mise20 button {
+    background-size: contain;
+    width: 70px;
+    height: 70px;
+    border-radius: 35px;
+    font-size: 1em;
+    font-family: "numerique", serif;
+    margin: 5px;
+    box-shadow: 0 7px 0 #00391c;
+    outline: none;
+}
+
+#mise50 button {
+    background-size: contain;
+    width: 70px;
+    height: 70px;
+    border-radius: 35px;
+    font-size: 1em;
+    font-family: "numerique", serif;
+    margin: 5px;
+    box-shadow: 0 7px 0 #b46126;
+    outline: none;
+}
+
+#mise100 button {
+    background-size: contain;
+    width: 70px;
+    height: 70px;
+    border-radius: 35px;
+    font-size: 1em;
+    font-family: "numerique", serif;
+    margin: 5px;
+    box-shadow: 0 7px 0 #831d1c;
+    outline: none;
+}
+
+#mise10 button{
+    background-image: url("../IMAGES/jeton_vierge.png");
+}
+
+#mise20 button{
+    background-image: url("../IMAGES/jeton_vert.png");
+}
+
+#mise50 button{
+    background-image: url("../IMAGES/jeton_jaune.png");
+}
+
+#mise100 button{
+    background-image: url("../IMAGES/jeton_rouge.png");
 }
 
 #mise button:active{
     box-shadow: none;
     position: relative;
-    top: 5px;
+    top: 7px;
     color: greenyellow;
 }
 
 #valider{
-    background-color: red;
-    width: 100px;
-    height: 50px;
+    color: white;
+    background-image: url("../IMAGES/jouer.png");
+    background-size: contain;
+    background-repeat: round;
+    width: 125px;
+    height: 70px;
     border-radius: 10px;
     font-size: 1.5em;
     font-family: "numerique", serif;
     margin: 5px 0 15px 40px;
-    box-shadow: 0 5px 0 #ae100e;
+    box-shadow: 0 5px 0 #439216;
     outline: none;
 }
 
