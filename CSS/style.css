@@ -4,6 +4,7 @@
 }
 
 #contener {
+    background: #7a2a1d;
     justify-content: center;
     display: flex;
     flex-wrap: wrap;
@@ -20,9 +21,9 @@
 
 #bandeau {
     width: 100%;
-    height: auto;
+    height: 20vmin;
+    min-height: 120px;
     display: flex;
-    border: 1px solid white;
     justify-content: space-between;
 }
 
@@ -65,13 +66,13 @@ li {
 *************************************/
 #zoneJeu {
     width: 100%;
-    height: 550px;
+    height: 80vmin;
+    min-height: 450px;
     display: flex;
     justify-content: center;
-    background-image: url("../IMAGES/tablePoker.png");
-    background-repeat: round;
-    background-size: cover;
-
+    /*background-image: url("../IMAGES/tablePoker.png");*/
+    /*background-repeat: round;*/
+    /*background-size: cover;*/
 }
 
 
@@ -80,53 +81,57 @@ li {
 *************************************/
 #zoneCagnotte {
     width: 20%;
-    background-color: #9fb4f2;
     display: flex;
     flex-direction: column;
+    /*flex-wrap: wrap;*/
     justify-content: flex-end;
-    padding: 0 0 10px 25px;
-    background-image: url('../IMAGES/argent.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
+    padding: 0 0 25px 25px;
+    margin-bottom: 2vh;
+    align-items: center;
 }
 
-#texteCagnotte {
-    display: block;
-    align-content: flex-end;
-    justify-items: left;
-    color: white;
+#zoneCagnotte img{
+    width: 100%;
+    height: auto;
+    margin: 25px;
 }
 
-.memeligne{
-    display: flex;
-    flex-wrap: nowrap;
-}
+/*#texteCagnotte {*/
+    /*!*margin: -150px 0 0 25px;*!*/
+    /*display: block;*/
+    /*align-content: flex-end;*/
+    /*color: white;*/
+/*}*/
 
-.texte {
-    font-family: 'Cinzel', serif;
-    font-size: 1.5em;
-    padding: 0;
-    margin-bottom: 0;
+/*.memeligne{*/
+    /*display: flex;*/
+    /*flex-wrap: nowrap;*/
+/*}*/
 
-}
+/*.texte {*/
+    /*font-family: 'Cinzel', serif;*/
+    /*font-size: 1.5em;*/
+    /*padding: 0;*/
+    /*margin-bottom: 0;*/
+/*}*/
 
 #cagnotte {
     font-family: "numerique", serif;
-    font-size: 2em;
+    font-size: 2vw;
     background-color: black;
     border: 4px inset silver;
-    height: 35px;
-    width: 200px;
+    height: 2vw;
+    width: 11vw;
     text-align: right;
-    margin: 0;
     padding: 0 10px 0 10px;
     color: white;
+    margin-top: -100px;
 }
 
-#monnaie {
-    font-size: 2em;
-    margin: 0 0 0 5px;
-}
+/*#monnaie {*/
+    /*font-size: 2em;*/
+    /*margin: 0 0 0 5px;*/
+/*}*/
 
 
 /*************************************
@@ -151,18 +156,34 @@ li {
 }
 
 #zoneBouton li button{
-    background-color: red;
-    width: 50px;
-    height: 50px;
-    border-radius: 40px;
-    font-size: .6em;
+    /*background-color: red;*/
+    /*width: 50px;*/
+    /*height: 50px;*/
+    /*border-radius: 40px;*/
+    /*font-size: .6em;*/
+    /*font-family: "numerique", serif;*/
+    /*margin: 10px 0 10px 0;*/
+    /*box-shadow: 0 5px 0 #ae100e;*/
+    /*outline: none;*/
+    color: white;
+    background-image: url("../IMAGES/jouer.png");
+    background-size: contain;
+    background-repeat: round;
+    width: 125px;
+    height: 70px;
+    border-radius: 10px;
+    font-size: 1em;
     font-family: "numerique", serif;
-    margin: 10px 0 10px 0;
-    box-shadow: 0 5px 0 #ae100e;
+    margin: 5px 0 15px 40px;
+    box-shadow: 0 7px 0 #439216;
     outline: none;
 }
 
 #zoneBouton li button:active{
+    /*box-shadow: none;*/
+    /*position: relative;*/
+    /*top: 5px;*/
+    /*color: greenyellow;*/
     box-shadow: none;
     position: relative;
     top: 5px;
@@ -186,9 +207,6 @@ li {
     flex-direction: column;
     justify-content: flex-end;
     align-items: center;
-    background-image: url('../IMAGES/jetons.png');
-    background-repeat: no-repeat;
-    background-size: cover;
 }
 
 #mise {
@@ -209,7 +227,7 @@ li {
     font-size: 1em;
     font-family: "numerique", serif;
     margin: 5px;
-    box-shadow: 0 7px 0 #a5a5a5;
+    box-shadow: 0 7px 0 #b46126;
     outline: none;
 }
 
@@ -221,7 +239,7 @@ li {
     font-size: 1em;
     font-family: "numerique", serif;
     margin: 5px;
-    box-shadow: 0 7px 0 #00391c;
+    box-shadow: 0 7px 0 #831d1c;
     outline: none;
 }
 
@@ -233,7 +251,7 @@ li {
     font-size: 1em;
     font-family: "numerique", serif;
     margin: 5px;
-    box-shadow: 0 7px 0 #b46126;
+    box-shadow: 0 7px 0 #a5a5a5;
     outline: none;
 }
 
@@ -245,24 +263,24 @@ li {
     font-size: 1em;
     font-family: "numerique", serif;
     margin: 5px;
-    box-shadow: 0 7px 0 #831d1c;
+    box-shadow: 0 7px 0 #00391c;
     outline: none;
 }
 
 #mise10 button{
-    background-image: url("../IMAGES/jeton_vierge.png");
-}
-
-#mise20 button{
-    background-image: url("../IMAGES/jeton_vert.png");
-}
-
-#mise50 button{
     background-image: url("../IMAGES/jeton_jaune.png");
 }
 
-#mise100 button{
+#mise20 button{
     background-image: url("../IMAGES/jeton_rouge.png");
+}
+
+#mise50 button{
+    background-image: url("../IMAGES/jeton_vierge.png");
+}
+
+#mise100 button{
+    background-image: url("../IMAGES/jeton_vert.png");
 }
 
 #mise button:active{
@@ -282,7 +300,7 @@ li {
     border-radius: 10px;
     font-size: 1.5em;
     font-family: "numerique", serif;
-    margin: 5px 0 15px 40px;
+    margin: 5px 0 30px 40px;
     box-shadow: 0 5px 0 #439216;
     outline: none;
 }
@@ -290,6 +308,6 @@ li {
 #valider:active{
     box-shadow: none;
     position: relative;
-    top: 5px;
+    top: 7px;
     color: greenyellow;
 }
