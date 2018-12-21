@@ -1,4 +1,3 @@
-// creer un fichier html appelé accueil.html et y insérer ceci :
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -16,9 +15,10 @@
         <h1>Blagues Jacques</h1>
         <div id="menu">
             <a href="index.html">Accueil</a>
-            <a id = 'boutonJouer' href="#">Jouer</a>
+            <a href="jeu.html">Jouer</a>
             <a href="http://clippss.free.fr/argent/7%20(4).gif" target="_blank">Banque</a>
             <a href="#" id="boutonregles">Règles</a>
+
             <div class="Regles">
 
                 <ul>
@@ -73,13 +73,46 @@
     <div id="zoneJeu">
         <div id="zoneCagnotte">
             <img src="IMAGES/jetonMax.png" alt="">
-            <p id="cagnotte">0€</p>
+            <!--<div id="texteCagnotte">-->
+            <!--<div class="memeligne">-->
+            <p id="cagnotte">1234567890</p>
+            <!--<p id="monnaie">€</p>-->
+            <!--</div>-->
+            <!--</div>-->
         </div>
         <div id="zoneTapisBouton">
-
             <div id="zoneTapis">
-                <h1 class="bienvenue">Bienvenue</h1>
+                <div class="bot">
+                    <p id="paquet"></p>
+                    <p id="jeuBot"></p>
+                </div>
+                <div class="joueur">
+                    <div class="joueur1">
+                        <p id="mise1"></p>
+                        <p id="jeu1Joueur"></p>
+                    </div>
+                    <div class="joueur2">
+                        <p id="mise2"></p>
+                        <p id="jeu2Joueur"></p>
+                    </div>
+                </div>
+                <p id="messageFin"></p>
             </div>
+
+            <ul id="zoneBouton">
+                <li id="split">
+                    <button type="button">Split</button>
+                </li>
+                <li id="double">
+                    <button type="button">Double</button>
+                </li>
+                <li id="carte">
+                    <button type="button">Carte</button>
+                </li>
+                <li id="passe">
+                    <button type="button">Passe</button>
+                </li>
+            </ul>
         </div>
         <div id="zoneMise">
             <ul id="mise">
@@ -96,10 +129,11 @@
                     <button type="button">100</button>
                 </li>
             </ul>
+            <button id="valider" type="button">Jouer</button>
+            <button id="rejouer" type="button">Rejouer</button>
         </div>
     </div>
 </div>
-
-<script src="JS/accueil.js"></script>
+<script src="JS/blackJack.js"></script>
 </body>
 </html>

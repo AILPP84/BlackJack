@@ -1,3 +1,13 @@
+/********************************************************
+ * ********************** PATRICK ***********************
+ ********************************************************/
+
+
+
+
+
+
+
 // Liaison des boutons avec les variables JS
 let split = document.querySelector("#split");
 let double = document.querySelector("#double");
@@ -371,7 +381,7 @@ let bot = {
 // au chargement de la page, on lance l'initialisation qui remet les variables à 0
 //et fait disparaitre les boutons split, double, passe, carte et rejouer
 window.onload = function () {
-    localStorage.setItem("cagnotte", 500);
+    // localStorage.setItem("cagnotte", 500);
     initialiser();
 
 }

@@ -127,7 +127,7 @@ a {
 #zoneCagnotte img {
     width: 100%;
     height: auto;
-    margin: 25px;
+    margin: 10px;
 }
 
 #cagnotte {
@@ -173,13 +173,13 @@ a {
     align-items: center;
 }
 
-.joueur1 {
+.joueur1, .joueur2{
     width: 100%;
     display: inline-flex;
     justify-content: center;
 }
 
-#mise1{
+#mise1, #mise2{
     margin: 40px 0 0 0;
     max-width: 200px;
     max-height: 70px;
@@ -189,12 +189,12 @@ a {
     align-items: center;
 }
 
-#mise1 img{
+#mise1 img, #mise2 img{
     margin: -20px 0 0 -30px;
     padding:2px;
 }
 
-#jeu1Joueur img{
+#jeu1Joueur img, #jeu2Joueur img{
     padding:5px;
 }
 
@@ -271,6 +271,10 @@ a {
     flex-direction: column;
     justify-content: flex-end;
     align-items: center;
+}
+
+#zoneMise:hover{
+    display: flex;
 }
 
 #mise {
