@@ -78,7 +78,7 @@ a {
     background-color: rgba(192, 192, 192, 0.7);
     padding: 1px;
     font-family: 'Noto Sans KR', sans-serif;
-    z-index: auto;
+    z-index: -1;
 }
 
 .Regles li {
@@ -151,19 +151,22 @@ a {
 #zoneTapis {
     display: block;
     height: 70vh;
+    justify-content: center;;
 }
 
 .bot {
-    /*margin: 0;*/
+
     display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: center;
 }
 
-#jeuBot{
+#jeuBot img{
     /*margin: 0;*/
+    padding:5px;
 }
+
 
 .joueur {
     margin: 0;
@@ -173,9 +176,11 @@ a {
     align-items: center;
 }
 
+
 .joueur1, .joueur2{
     width: 100%;
     display: inline-flex;
+    /*flex-direction: row;*/
     justify-content: center;
 }
 
@@ -199,17 +204,18 @@ a {
 }
 
 .joueur2 {
-    display: inline-flex;
+    /*display: inline-flex;*/
     justify-content: center;
 }
 
-#messageFin {
+#messageFin, #messFinJeu1, #messFinJeu2 {
     background-color: rgba(248, 248, 255, 0.5);
     font-family: Arial;
 }
 
 #zoneTapisBouton {
     display: flex;
+    width: 80%;
     flex-direction: column;
     justify-content: flex-end;
     flex: 1;
@@ -218,6 +224,7 @@ a {
 
 #zoneTapis {
     flex: 1;
+    width: 100%;
 }
 
 #zoneBouton {
@@ -357,7 +364,9 @@ a {
     top: 7px;
     color: greenyellow;
 }
-
+#split, #double, #rejouer, #anuler, #carte, #passe{
+    display: none;
+}
 #valider {
     color: white;
     background-image: url("../IMAGES/jouer.png");
@@ -410,6 +419,9 @@ footer {
     text-align: center;
     font-family: "Tahoma", serif;
     font-size: 12px;
+    position: fixed;
+    top: 670px;
+    left: 550px;
 }
 
 /*************************************
@@ -421,4 +433,25 @@ footer {
     font-size: 130px;
     color: red;
     text-shadow: 5px 5px darkslategrey;
+}
+#annuler{
+    color: white;
+    background-image: url("../IMAGES/jouer.png");
+    background-size: contain;
+    background-repeat: round;
+    width: 125px;
+    height: 70px;
+    border-radius: 10px;
+    font-size: 1.3em;
+    font-family: "numerique", serif;
+    margin: 5px 0 30px 40px;
+    box-shadow: 0 5px 0 #439216;
+    outline: none;
+}
+
+#annuler:active{
+    box-shadow: none;
+    position: relative;
+    top: 7px;
+    color: greenyellow;
 }

@@ -1,22 +1,20 @@
-// creer un fichier html appelé accueil.html et y insérer ceci :
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <title>BlackJack</title>
-    <link rel="stylesheet" href="CSS/style.css">
+    <link rel="stylesheet" href="CSS/home.css">
     <link href="https://fonts.googleapis.com/css?family=Cinzel" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Cinzel|Sedgwick+Ave+Display" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR%7CZCOOL+QingKe+HuangYou" rel="stylesheet">
 </head>
-<body>
-<div id="contener">
+<header id="header">
     <div id="bandeau">
         <img id="logo" src="IMAGES/logo.png">
         <h1>Blagues Jacques</h1>
         <div id="menu">
             <a href="index.html">Accueil</a>
-            <a id = 'boutonJouer' href="#">Jouer</a>
+            <a id='boutonJouer' href="#">Jouer</a>
             <a href="http://clippss.free.fr/argent/7%20(4).gif" target="_blank">Banque</a>
             <a href="#" id="boutonregles">Règles</a>
             <div class="Regles">
@@ -70,36 +68,45 @@
             </div>
         </div>
     </div>
-    <div id="zoneJeu">
-        <div id="zoneCagnotte">
-            <img src="IMAGES/jetonMax.png" alt="">
-            <p id="cagnotte">0€</p>
-        </div>
-        <div id="zoneTapisBouton">
+</header>
+<body>
+<div id="contener">
 
-            <div id="zoneTapis">
-                <h1 class="bienvenue">Bienvenue</h1>
-            </div>
+    <div id="zoneTapis">
+        <h1 class="bienvenue">Bienvenue</h1>
+        <div class="animation">
+            <p class="flex-item1">Jeu créé par Estelle, Patrick, Camille et Jaroslav</p>
         </div>
-        <div id="zoneMise">
-            <ul id="mise">
-                <li id="mise10">
-                    <button type="button">10</button>
-                </li>
-                <li id="mise20">
-                    <button type="button">20</button>
-                </li>
-                <li id="mise50">
-                    <button type="button">50</button>
-                </li>
-                <li id="mise100">
-                    <button type="button">100</button>
-                </li>
-            </ul>
+        <div class="formulaire">
+            <form>
+                <div class="saisie">
+                    <label for="pseudo">Votre pseudo</label><input id="pseudo" type="text">
+                    <label for="cagnotte"></label>Montant de votre cagnotte<input id="cagnotte" type="number">
+                </div>
+                <p>Choisissez le motif des cartes</p>
+                <ul class="dos">
+                    <li><input type="radio" name="dosCarte" value="blue" checked="checked"><img id="dosBlue"
+                            src="IMAGES/blue_back.jpg"></li>
+                    <li><input type="radio" name="dosCarte" value="Gray"><img id="dosBlack" src="IMAGES/Gray_back.jpg">
+                    </li>
+                    <li><input type="radio" name="dosCarte" value="Green"><img id="dosGreen"
+                            src="IMAGES/Green_back.jpg">
+                    </li>
+                    <li><input type="radio" name="dosCarte" value="Red"><img  id="dosRed" src="IMAGES/Red_back.jpg"></li>
+                    <li><input type="radio" name="dosCarte" value="Yellow"><img id="dosYellow"
+                            src="IMAGES/Yellow_back.jpg">
+                    </li>
+                    <li><input type="radio" name="dosCarte" value="Purple"><img id="dosPurple"
+                            src="IMAGES/Purple_back.jpg">
+                    </li>
+                </ul>
+                <button id="valider" type="button" name="valider">Valider</button>
+            </form>
         </div>
     </div>
 </div>
 
 <script src="JS/accueil.js"></script>
 </body>
+<footer>&copy Copyright : Estelle - Patrick - Camille - Jaroslav</footer>
 </html>

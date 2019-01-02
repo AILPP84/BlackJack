@@ -10,17 +10,21 @@ let mise100 = document.querySelector("#mise100");
 let demarrer = document.querySelector("#valider");
 let rejouer = document.querySelector("#rejouer");
 let messFin = document.querySelector("#messageFin");
+let messFinJ1 = document.querySelector("#messFinJeu1");
+let messFinJ2 = document.querySelector("#messFinJeu2");
 let cagnotte = document.querySelector("#cagnotte");
 let mise1 = document.querySelector("#mise1");
 let mise2 = document.querySelector("#mise2");
 let annulerMise = document.querySelector("#annuler");
 let selectionJeu1 = document.querySelector("#jeu1Joueur");
 let selectionJeu2 = document.querySelector("#jeu2Joueur");
-
+let zoneJeu = document.querySelector(".joueur");
+let zoneJeu1 = document.querySelector(".joueur1");
+let zoneJeu2 = document.querySelector(".joueur2");
 
 let couleurs = ["d", "s", "h", "c"];
-// let valeurs = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"];
-let valeurs = ["2", "2", "4", "4", "6", "6", "8", "8", "10", "10", "Q", "Q", "A"];
+let valeurs = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"];
+// let valeurs = ["10", "10", "10", "4", "6", "6", "8", "8", "10", "10", "Q", "Q", "A"];
 let poids = [2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 11];
 let niveauPaquet = 0; //varirable intermédiaire pour gérer l'indice du paquet
 let indicePaquet = 0; //variable pour mémoriser la place dans le paquet
@@ -31,6 +35,7 @@ let indice = 0;
 let splitMise = 0;
 let memoriseGagnant = "";
 let jeuEnCours = 0;
+let finTour = false;
 let blagues = ["Deux volcans discutent :<br>" + "Mais dis-moi, t'aurais pas arrêté de fumer ?",
     " Comment appelle t-on une fleur qui prend sa graine à moitié ?<br>" + "Une migraine.",
     "Quelles sont les lettres qui sont toujours aux toilettes: <br>" + "Ce sont les lettres WC et PQ",
@@ -52,17 +57,18 @@ let blagues = ["Deux volcans discutent :<br>" + "Mais dis-moi, t'aurais pas arr�
 ];
 
 
-/*Création du paquet de cartes - chasue carte a un poids (pour le calcul des points), une couleur (pique coeur
+/*Création du paquet de cartes - chaque carte a un poids (pour le calcul des points), une couleur (pique coeur
 trèfle ou carreau), une valeur (2,3,4.. J, Q,K et A) pour gérer le double/split et l'affichage des cartes
 et le fichier gif associé */
 
 
 class Carte {
-    constructor(poids, valeur, couleur, gif) {
+    constructor(poids, valeur, couleur, gif, dos) {
         this.poids = poids;
         this.valeur = valeur;
         this.couleur = couleur;
         this.gif = gif;
+        this.dos = dos;
     }
 };
 let k = 0;
@@ -74,7 +80,8 @@ for (let i = 0; i < couleurs.length; i++) {
 
     for (let j = 0; j < valeurs.length; j++) {
         let gif = "IMAGES/" + valeurs[j] + couleurs[i] + ".gif";
-        paquet[k] = new Carte(poids[j], valeurs[j], couleurs[i], gif);
+        let dos = "IMAGES/" + localStorage.getItem("dos") + ".jpg";
+        paquet[k] = new Carte(poids[j], valeurs[j], couleurs[i], gif, dos);
         k++;
     }
 }
@@ -100,8 +107,9 @@ function initialiser() {
     bot.poidsJeu = 0;
     checkBoxJeu = "";
     jeuDouble = false;
-    memoriseGagnant = "";
     messFin.innerHTML = messageFin;
+    messFinJ1.innerHTML = messageFin;
+    messFinJ2.innerHTML = messageFin;
     document.querySelector("#jeu1Joueur").innerHTML = jeuAAfficher;
     document.querySelector("#jeu2Joueur").innerHTML = jeuAAfficher;
     document.querySelector("#jeuBot").innerHTML = jeuAAfficher;
@@ -119,9 +127,12 @@ function initialiser() {
     afficherBouton(annulerMise, "none");
     mise1.innerHTML = "";
     mise2.innerHTML = "";
+    selectionJeu1.style.border = "none";
+    selectionJeu2.style.border = "none";
     niveauPaquet = 0; //varirable intermédiaire pour gérer l'indice du paquet
     indicePaquet = 0; //variable pour mémoriser la place dans le paquet
     indice = 0;
+    finTour = false;
 }
 
 /*Distribution des cartes en paramètres :
@@ -130,47 +141,12 @@ function initialiser() {
 - jeu = pour différencier le jeu 1 et le jeu 2 en cas de split ou double
 - ou = zone où seront affichées les cartes
  */
-function distribuer(qui, combien, jeu, ou) {
+function distribuer(quelJeu, combien) {
     console.log("distribuer");
     niveauPaquet = indicePaquet;
-
-    if (jeuDouble === true) {
-        qui.poidsJeu = 0;
-        for (let i = niveauPaquet; i < (niveauPaquet + combien); i++) {
-            jeu.push(paquet[i]);
-            indicePaquet += 1;
-        }
-        for (let j = 0; j < jeu.length; j++) {
-            qui.poidsJeu += jeu[j].poids;
-        }
-        afficherJeu(jeu, ou);
-        calculPoids(jeu);
-        if (jeu == "joueur.jeu2") { //si on est en split ou double et qu'on distribue sur le jeu 2
-            qui.poidsJeu2 = 0;
-            for (let i = niveauPaquet; i < (niveauPaquet + combien); i++) {
-                jeu.push(paquet[i]);
-                indicePaquet += 1;
-                console.log(paquet[i]);
-            }
-            for (let j = 0; j < jeu.length; j++) {
-                qui.poidsJeu2 += jeu[j].poids;
-            }
-            afficherJeu(jeu, ou);
-            calculPoids(jeu);
-        }
-
-    } else {
-        qui.poidsJeu = 0;
-        for (let i = niveauPaquet; i < (niveauPaquet + combien); i++) {
-            jeu.push(paquet[i]);
-            indicePaquet += 1;
-        }
-        for (let j = 0; j < jeu.length; j++) {
-            qui.poidsJeu += jeu[j].poids;
-        }
-        afficherJeu(jeu, ou);
-        calculPoids(jeu);
-
+    for (let i = niveauPaquet; i < (niveauPaquet + combien); i++) {
+        quelJeu.push(paquet[i]);
+        indicePaquet += 1;
     }
 }
 
@@ -179,19 +155,26 @@ function distribuer(qui, combien, jeu, ou) {
 - jeu = quel jeu est à afficher Jeu BOT, jeu1 ou jeu2
 - ou = a quel emplacement afficher le jeu
  */
-function afficherJeu(jeu, ou) {
+function afficherJeu(qui, jeu, ou) {
     jeuAAfficher = "";
-    if (jeuDouble === true) {
-        console.log("passage dans le test");
+    console.log("Ca passe dans la fonction afficher jeu");
+    if ((qui.pseudo === "BOT") && (finTour === false)) {
+        console.log("affichage du jeu du BOT");
+        for (let i = 0; i < jeu.length; i++) {
+            jeuAAfficher += `<img src="${jeu[i].dos}">`;
+            console.log(jeuAAfficher);
+        }
+        document.getElementById(`${ou}`).innerHTML = jeuAAfficher;
+    } else if ((qui.pseudo === "BOT") && (finTour === true)) {
         for (let i = 0; i < jeu.length; i++) {
             jeuAAfficher += `<img src="${jeu[i].gif}">`;
+            console.log(jeuAAfficher);
         }
-        console.log(jeuAAfficher);
         document.getElementById(`${ou}`).innerHTML = jeuAAfficher;
     } else {
         for (let i = 0; i < jeu.length; i++) {
             jeuAAfficher += `<img src="${jeu[i].gif}">`;
-
+            console.log(jeuAAfficher);
         }
         document.getElementById(`${ou}`).innerHTML = jeuAAfficher;
     }
@@ -205,308 +188,181 @@ function afficherBouton(bouton, affichage) {
     bouton.style.display = affichage;
 }
 
+
 /* vérification sur la première distribution s'il y a une paire pour proposer split ou double*/
-function controleDouble(jeu) {
-    console.log("controleDouble");
-    if ((jeu[0].valeur === jeu[1].valeur)) //si le joueur a 2 cartes identiques, on affiche split et double
+function controle1erTour(jeu) {
+    console.log(jeu);
+    if (jeu[0].valeur === jeu[1].valeur) //si le joueur a 2 cartes identiques, on affiche split et double
     {
+        console.log("jeu Double détecté");
         jeuDouble = true;
         afficherBouton(split, "block");
         afficherBouton(double, "block");
         afficherBouton(carte, "block");
         afficherBouton(passe, "block");
-    } else {
+    } else if (jeu[0].poids + jeu[1].poids === 21) {
+        console.log("blackJack détecté");
+        messageFin = "BLACKJACK <br>";
+        joueur.mise = parseInt(joueur.mise) * 3 / 2;
+        resultatJeu(0, 21, joueur.mise,messFin);
+        afficherBouton(split, "none");
+        afficherBouton(double, "none");
+        afficherBouton(carte, "none");
+        afficherBouton(passe, "none");
+    } else if (joueur.poidsJeu < 21) {
+        console.log("passe dans une autre boucle");
+        afficherBouton(split, "none");
+        afficherBouton(double, "none");
         afficherBouton(carte, "block");
         afficherBouton(passe, "block");
     }
 };
 
-/* Vérification du poids du jeu pour proposer les boutons de distribution tant que possible */
-function calculPoids(jeu) {
-    console.log("calculPoids");
-    if (jeuDouble === false) {
-        console.log("jeuDouble == false");
-        if (poids < 21) {
-            // si le poids du jeu est inférieur à 21, on peut continuer à demander des cartes
-            afficherBouton(split, "none");
-            afficherBouton(double, "none");
-            afficherBouton(carte, "block");
-            afficherBouton(passe, "block");
-        }
-        if ((poids == 21) && (jeu.length == 2)) { // si on a 21 sur 2 cartes alors BlackJack
-            messageFin = "BLACKJACK <br>";
-            joueur.mise = joueur.mise * 3 / 2;
-            resultatJeu(0, joueur.poidsJeu);
-            afficherBouton(split, "none");
-            afficherBouton(double, "none");
-            afficherBouton(carte, "none");
-            afficherBouton(passe, "none");
-        }
-        if (poids > 21) {
-            console.log("poids > 21");
-            console.log("Jeu Joueur sup à 21");
-            //si le poids du jeu joueur est supérieur à 21 et que l'on a 1 AS
-            for (let i = 0; i < jeu.length; i++) {
-                if (jeu[i].valeur === "A") {
-                    joueur.poidsJeu -= 10; // alors l'as prend la valeur 1
-                }
-            }
-            afficherBouton(rejouer, "block");
-            joueur.cagnotte -= joueur.mise;
-            cagnotte.innerHTML = joueur.cagnotte + "€";
-            localStorage.setItem("cagnotte", joueur.cagnotte);
-            messageFin = "Dommage, vous avez perdu";
-            if ((jeuDouble === true) && (jeuEnCours == 1)) {
-                jeuEnCours = 2;
-            }
-            afficherBouton(split, "none");
-            afficherBouton(double, "none");
-            afficherBouton(carte, "none");
-            afficherBouton(passe, "none");
-
-            // le jeu s'arrête pour le joueur
-            // on commence alors la distribution pour le BOT
-            while (bot.poidsJeu < 17) {
-                distribuer(bot, 1, bot.jeu, "jeuBot");
-            }
-            // quand tout le monde est servi, on vérifie les jeux
-            resultatJeu(bot.poidsJeu, joueur.poidsJeu);
-            if (double == true) { //si l'on est sur un jeu double (split ou double) on vérifie le 2nd jeu
-                resultatJeu(bot.poidsJeu, joueur.poidsJeu2);
-            }
-        }
-
-    }
-    if (jeuDouble === true) {
-
-        if (poids < 21) {
-            // si le poids du jeu est inférieur à 21, on peut continuer à demander des cartes
-            afficherBouton(split, "none");
-            afficherBouton(double, "none");
-            afficherBouton(carte, "block");
-            afficherBouton(passe, "block");
-        }
-        if ((poids == 21) && (jeu.length == 2)) { // si on a 21 sur 2 cartes alors BlackJack
-            if (jeuEnCours == 1) {
-                messageFin = "BLACKJACK <br>";
-                joueur.mise = joueur.mise * 3 / 2;
-                resultatJeu(bot.poidsJeu, joueur.poidsJeu);
-                jeuEnCours = 2;
-                selectionJeu1.style.border = "none";
-                selectionJeu2.style.border = "5px solid greenyellow";
-            } else {
-                messageFin = "BLACKJACK <br>";
-                joueur.mise = joueur.mise * 3 / 2;
-                resultatJeu(bot.poidsJeu, joueur.poidsJeu);
-                afficherBouton(split, "none");
-                afficherBouton(double, "none");
-                afficherBouton(carte, "none");
-                afficherBouton(passe, "none");
-            }
-        }
-
-        if (poids >= 21) {
-            console.log("Jeu Joueur sup à 21");
-            //si le poids du jeu joueur est supérieur à 21 et que l'on a 1 AS
-
-            for (let i = 0; i < jeu.length; i++) {
-                if (jeu[i].valeur === "A") {
-                    joueur.poidsJeu -= 10; // alors l'as prend la valeur 1
-                    break;
-                }
-            }
-        }
-        if (poids > 21) {
-            if (jeuEnCours == 1) {
-                jeuEnCours = 2;
-                selectionJeu1.style.border = "none";
-                selectionJeu2.style.border = "5px solid greenyellow";
-            } else {
-                afficherBouton(rejouer, "block");
-                afficherBouton(split, "none");
-                afficherBouton(double, "none");
-                afficherBouton(carte, "none");
-                afficherBouton(passe, "none");
-                if (memoriseGagnant != "joueur") {
-                    messageFin = "Dommage, vous avez perdu";
-                }
-                // le jeu s'arrête pour le joueur
-                // on commence alors la distribution pour le BOT
-                while (bot.poidsJeu < 17) {
-                    distribuer(bot, 1, bot.jeu, "jeuBot");
-                }
-                // quand tout le monde est servi, on vérifie les jeux
-                resultatJeu(bot.poidsJeu, joueur.poidsJeu);
-                if (double == true) { //si l'on est sur un jeu double (split ou double) on vérifie le 2nd jeu
-                    resultatJeu(bot.poidsJeu, joueur.poidsJeu2);
-                }
-            }
+/* Calcul du poids du jeu */
+function calculPoids(quelJeu,qui) {
+    quelPoids = 0;
+    for (let i = 0; i < quelJeu.length; i++) {
+        quelPoids += quelJeu[i].poids;
+        if (qui.pseudo ==  localStorage.getItem("pseudo"))
+            if ((quelJeu[i].valeur == "A") && (quelPoids > 21)) {
+                quelPoids -= 10; // alors l'as prend la valeur 1
         }
     }
+    return (quelPoids);
 }
+/* Vérification du jeu */
+function verifierJeu(quelJeu, quelPoids) {
+
+    /*Vérification du jeu pour proposer les boutons de distribution tant que possible */
+    if ((quelPoids < 21) && (jeuDouble == false)) {
+        console.log("fonction verifier Jeu");
+        // si le poids du jeu est inférieur à 21, on peut continuer à demander des cartes
+        afficherBouton(split, "none");
+        afficherBouton(double, "none");
+        afficherBouton(carte, "block");
+        afficherBouton(passe, "block");
+    }
+
+    if (quelPoids > 21) {
+        //si le poids du jeu joueur est supérieur à 21 et que l'on a 1 AS
+        for (let i = 0; i < quelJeu.length; i++) {
+            if (quelJeu[i].valeur === "A") {
+                quelPoids -= 10; // alors l'as prend la valeur 1
+            }
+        }
+        if (quelPoids >= 21) {
+            cagnotte.innerHTML = joueur.cagnotte + "€";
+            // localStorage.setItem("cagnotte", joueur.cagnotte);
+            // messageFin = "Dommage, vous avez perdu";
+            if ((jeuDouble == true) && (jeuEnCours == 1)) {
+                jeuEnCours = 2;
+                selectionJeu1.style.border = "none";
+                selectionJeu2.style.border = "5px solid greenyellow";
+            } else {
+                afficherBouton(split, "none");
+                afficherBouton(double, "none");
+                afficherBouton(carte, "none");
+                afficherBouton(passe, "none");
+                while (bot.poidsJeu < 17) {
+                    distribuer(bot.jeu, 1);
+                    bot.poidsJeu = calculPoids(bot.jeu,bot);
+                }
+                finTour = true;
+                afficherJeu(bot, bot.jeu, "jeuBot");
+                console.log("appel Resultat JEU");
+                resultatJeu(bot.poidsJeu, joueur.poidsJeu, joueur.mise,messFin);
+            }
+
+        }
+
+    }
+
+}
+
 
 /* comparaison des scores et affichage du message Résultat avec pour paramètres :
 - bot = poids du jeu du BOT
 - joueur = poids du jeu du joueur
+- mise = la mise en cours associée au jeu en cours
+- ou = l'endroit ou afficher le message de résultat
  */
-function resultatJeu(poidsBot, poidsJoueur) {
-// si le score de la banque est supérieur à 21
-    if (jeuDouble === false) {
-        if (poidsJoueur == 21) {
-            afficherBouton(carte, "none");
-            afficherBouton(passe, "none");
-            afficherBouton(rejouer, "block");
-            joueur.cagnotte += joueur.mise;
-            cagnotte.innerHTML = joueur.cagnotte + "€";
-            localStorage.setItem("cagnotte", joueur.cagnotte);
-            messageFin = "Vous avez gagné!!! Voici votre gain : <br>";
-            indice = parseInt(Math.random(0, 18) * 10);
-            messageFin += blagues[indice];
-        }
-       else if (poidsBot > 21) {
-            afficherBouton(carte, "none");
-            afficherBouton(passe, "none");
-            afficherBouton(rejouer, "block");
-            joueur.cagnotte += joueur.mise;
-            cagnotte.innerHTML = joueur.cagnotte + "€";
-            localStorage.setItem("cagnotte", joueur.cagnotte);
-            messageFin += "Vous avez gagné!!! Voici votre gain : <br>";
-            indice = parseInt(Math.random(0, 18) * 10);
-            messageFin += blagues[indice];
+function resultatJeu(poidsBot, poidsJoueur, mise, ou) {
+
+    //on calcule ensuite le poids du jeu de la banque
+
+    if (poidsJoueur == 21) {
+        console.log("poidsJoueur = 21");
+        afficherBouton(carte, "none");
+        afficherBouton(passe, "none");
+        afficherBouton(rejouer, "block");
+        joueur.cagnotte += mise;
+        cagnotte.innerHTML = joueur.cagnotte + "€";
+        localStorage.setItem("cagnotte", joueur.cagnotte);
+        indice = parseInt(Math.random(0, 18) * 10);
+        messageFin += blagues[indice];
 
 //si le score du joueur dépasse 21 alors le joueur a perdu
-        } else if (poidsJoueur > 21) {
+    } else {
+        if (poidsJoueur > 21) {
+            console.log("poidsJoueur > 21");
             afficherBouton(carte, "none");
             afficherBouton(passe, "none");
             afficherBouton(rejouer, "block");
-            joueur.cagnotte -= joueur.mise;
+            joueur.cagnotte -= mise;
             cagnotte.innerHTML = joueur.cagnotte + "€";
             localStorage.setItem("cagnotte", joueur.cagnotte);
             messageFin = "Dommage, vous avez perdu";
+
+// si le score de la banque est supérieur à 21
+        } else {
+
+            if (poidsBot > 21) {
+                console.log("poidsBot > 21");
+                afficherBouton(carte, "none");
+                afficherBouton(passe, "none");
+                afficherBouton(rejouer, "block");
+                joueur.cagnotte += mise;
+                cagnotte.innerHTML = joueur.cagnotte + "€";
+                localStorage.setItem("cagnotte", joueur.cagnotte);
+                messageFin += "Vous avez gagné!!! Voici votre gain : <br>";
+                indice = parseInt(Math.random(0, 18) * 10);
+                messageFin += blagues[indice];
+
 
 //si le score du joueur est inférieur à celui de la banque, alors le joueur a perdu
-        } else if (poidsBot > poidsJoueur) {
-            afficherBouton(carte, "none");
-            afficherBouton(passe, "none");
-            afficherBouton(rejouer, "block");
-            joueur.cagnotte -= joueur.mise;
-            cagnotte.innerHTML = joueur.cagnotte + "€";
-            messageFin = "Dommage, vous avez perdu";
+            } else {
+                if (poidsBot > poidsJoueur) {
+                    console.log("poidsBot > poidsJoueur");
+                    afficherBouton(carte, "none");
+                    afficherBouton(passe, "none");
+                    afficherBouton(rejouer, "block");
+                    joueur.cagnotte -= mise;
+                    cagnotte.innerHTML = joueur.cagnotte + "€";
+                    messageFin = "Dommage, vous avez perdu";
 
 //si le score du joueur est supérieur à celui de la banque, alors le joueur a gagné
-        } else if (poidsJoueur >= poidsBot) {
-            afficherBouton(carte, "none");
-            afficherBouton(passe, "none");
-            afficherBouton(rejouer, "block");
-            joueur.cagnotte += joueur.mise;
-            cagnotte.innerHTML = joueur.cagnotte + "€";
-            localStorage.setItem("cagnotte", joueur.cagnotte);
-            messageFin += "Vous avez gagné!!! Voici votre gain : <br>";
-            indice = parseInt(Math.random(0, 18) * 10);
-            messageFin += blagues[indice];
-
+                } else {
+                    if (poidsJoueur >= poidsBot) {
+                        console.log("poidsJoueur >= poidsBot");
+                        afficherBouton(carte, "none");
+                        afficherBouton(passe, "none");
+                        afficherBouton(rejouer, "block");
+                        joueur.cagnotte += mise;
+                        cagnotte.innerHTML = joueur.cagnotte + "€";
+                        localStorage.setItem("cagnotte", joueur.cagnotte);
+                        messageFin += "Vous avez gagné!!! Voici votre gain : <br>";
+                        indice = parseInt(Math.random(0, 18) * 10);
+                        messageFin += blagues[indice];
 // si le score du joueur est égal à 21, le joueur a gagné
-        } else
-        messFin.innerHTML = messageFin;
-    }
-    if (jeuDouble === true) {
-        if (memoriseGagnant == "joueur") {
-            afficherBouton(carte, "none");
-            afficherBouton(passe, "none");
-            afficherBouton(rejouer, "block");
-            joueur.cagnotte += joueur.mise;
-            cagnotte.innerHTML = joueur.cagnotte + "€";
-            localStorage.setItem("cagnotte", joueur.cagnotte);
-            messageFin += "Vous avez gagné!!! Voici votre gain : <br>";
-            indice = parseInt(Math.random(0, 18) * 10);
-            messageFin += blagues[indice];
-
-        } else if (poidsBot > 21) {
-            afficherBouton(carte, "none");
-            afficherBouton(passe, "none");
-            afficherBouton(rejouer, "block");
-            joueur.cagnotte += joueur.mise;
-            cagnotte.innerHTML = joueur.cagnotte + "€";
-            localStorage.setItem("cagnotte", joueur.cagnotte);
-            if (memoriseGagnant != "joueur") { // pour éviter le double affichage des résultats en cas de jeu double
-                memoriseGagnant = "joueur";  // , on stocke le controle de vainqueur du jeu 1 dans une variable
-                jeuEnCours = 2;
-                selectionJeu1.style.border = "none";
-                selectionJeu2.style.border = "5px solid greenyellow";
-            } else {
-                messageFin += "Vous avez gagné!!! Voici votre gain : <br>";
-                indice = parseInt(Math.random(0, 18) * 10);
-                messageFin += blagues[indice];
-            }
-
-            /*si le score du joueur dépasse 21 alors le joueur a perdu sauf si nous sommes en jeu
-             double et que le 1er jeu est gagnant
-              */
-        } else if (poidsJoueur > 21) {
-            afficherBouton(carte, "none");
-            afficherBouton(passe, "none");
-            afficherBouton(rejouer, "block");
-            joueur.cagnotte -= joueur.mise;
-            cagnotte.innerHTML = joueur.cagnotte + "€";
-            localStorage.setItem("cagnotte", joueur.cagnotte);
-            messageFin = "Dommage, vous avez perdu";
-
-            /*si le score du joueur est inférieur à celui de la banque, alors le joueur a perdu
-             sauf si nous sommes en jeu double et que le 1er jeu est gagnant
-              */
-        } else if (poidsBot > poidsJoueur) {
-            afficherBouton(carte, "none");
-            afficherBouton(passe, "none");
-            afficherBouton(rejouer, "block");
-            joueur.cagnotte -= joueur.mise;
-            cagnotte.innerHTML = joueur.cagnotte + "€";
-            messageFin = "Dommage, vous avez perdu";
-
-            /*si le score du joueur est supérieur à celui de la banque, alors le joueur a gagné
-            sauf en cas de jeu double si le 1er jeu est gagnant
-             */
-        } else if (poidsJoueur >= poidsBot) {
-            afficherBouton(carte, "none");
-            afficherBouton(passe, "none");
-            afficherBouton(rejouer, "block");
-            joueur.cagnotte += joueur.mise;
-            cagnotte.innerHTML = joueur.cagnotte + "€";
-            localStorage.setItem("cagnotte", joueur.cagnotte);
-            if (memoriseGagnant != "joueur") { // pour éviter le double affichage des résultats en cas de jeu double
-                memoriseGagnant = "joueur";  // , on stocke le controle de vainqueur du jeu 1 dans une variable
-                jeuEnCours = 2;
-                selectionJeu1.style.border = "none";
-                selectionJeu2.style.border = "5px solid greenyellow";
-            } else {
-                messageFin += "Vous avez gagné!!! Voici votre gain : <br>";
-                indice = parseInt(Math.random(0, 18) * 10);
-                messageFin += blagues[indice];
-            }
-
-            /* si le score du joueur est égal à 21, le joueur a gagné */
-        } else if (poidsJoueur == 21) {
-            afficherBouton(carte, "none");
-            afficherBouton(passe, "none");
-            afficherBouton(rejouer, "block");
-            joueur.cagnotte += joueur.mise;
-            cagnotte.innerHTML = joueur.cagnotte + "€";
-            localStorage.setItem("cagnotte", joueur.cagnotte);
-            if (memoriseGagnant != "joueur") { // pour éviter le double affichage des résultats en cas de jeu double
-                memoriseGagnant = "joueur";  // , on stocke le controle de vainqueur du jeu 1 dans une variable
-                jeuEnCours = 2;
-                selectionJeu1.style.border = "none";
-                selectionJeu2.style.border = "5px solid greenyellow";
-            } else {
-                messageFin = "Vous avez gagné!!! Voici votre gain : <br>";
-                indice = parseInt(Math.random(0, 18) * 10);
-                messageFin += blagues[indice];
+                    }
+                }
             }
         }
-        messFin.innerHTML = messageFin;
     }
+    ou.innerHTML = messageFin;
+    messageFin ="";
 
 }
-
 
 /* Gestion de l'affichage de la mise en cas de split
  */
@@ -547,7 +403,7 @@ function afficherMises(ou, quelleMise) {
  */
 
 let joueur = {
-    // pseudo: localStorage.getItem("pseudo"),
+    pseudo: localStorage.getItem("pseudo"),
     cagnotte: localStorage.getItem("cagnotte"),
     mise: 0,
     jeu: [],
@@ -560,7 +416,7 @@ let joueur = {
 
 // Création du Bot avec : un nom et le jeu
 let bot = {
-    nom: "BOT",
+    pseudo: "BOT",
     jeu: [],
     poidsJeu: 0
 }
@@ -568,7 +424,6 @@ let bot = {
 // au chargement de la page, on lance l'initialisation qui remet les variables à 0
 //et fait disparaitre les boutons split, double, passe, carte et rejouer
 window.onload = function () {
-    localStorage.setItem("cagnotte", 500);
     initialiser();
 
 }
@@ -581,12 +436,18 @@ demarrer.addEventListener("click", function () {
         return 0.5 - Math.random()
     });
     cagnotte.innerHTML = joueur.cagnotte + "€";
-    distribuer(joueur, 1, joueur.jeu, "jeu1Joueur");
-    distribuer(bot, 1, bot.jeu, "jeuBot");
-    distribuer(joueur, 1, joueur.jeu, "jeu1Joueur");
-    distribuer(bot, 1, bot.jeu, "jeuBot");
-    calculPoids(joueur.jeu, joueur.poidsJeu);
-    controleDouble(joueur.jeu);
+    distribuer(joueur.jeu, 1);
+    distribuer(bot.jeu, 1);
+    distribuer(joueur.jeu, 1);
+    distribuer(bot.jeu, 1);
+    controle1erTour(joueur.jeu);
+    afficherJeu(joueur, joueur.jeu, "jeu1Joueur");
+    afficherJeu(bot, bot.jeu, "jeuBot");
+    joueur.poidsJeu = calculPoids(joueur.jeu,joueur);
+    console.log("poids jeu joueur apres fonction = " + joueur.poidsJeu);
+    bot.poidsJeu = calculPoids(bot.jeu,bot);
+    console.log("poids jeu bot apres fonction = " + bot.poidsJeu);
+    verifierJeu(joueur.jeu, joueur.poidsJeu);
     afficherBouton(annulerMise, "none");
     afficherBouton(mise10, "none");
     afficherBouton(mise20, "none");
@@ -614,11 +475,15 @@ split.addEventListener("click", function () {
     afficherMises(mise2, joueur.mise2);
     afficherBouton(split, "none");
     afficherBouton(double, "none");
-    distribuer(joueur, 1, joueur.jeu, "jeu1Joueur");
-    distribuer(joueur, 1, joueur.jeu2, "jeu2Joueur");
+    distribuer(joueur.jeu, 1);
+    joueur.poidsJeu = calculPoids(joueur.jeu,joueur);
+    distribuer(joueur.jeu2, 1)
+    joueur.poidsJeu2 = calculPoids(joueur.jeu2,joueur);
+    afficherJeu(joueur,joueur.jeu,"jeu1Joueur");
+    afficherJeu(joueur,joueur.jeu2,"jeu2Joueur");
     jeuEnCours = 1;
     selectionJeu2.style.border = "none";
-    selectionJeu1.style.border = "5px solid #00391c";
+    selectionJeu1.style.border = "5px solid greenyellow";
 
 });
 
@@ -632,82 +497,128 @@ double.addEventListener("click", function () {
     joueur.mise2 = joueur.mise;
     joueur.mise += joueur.mise;
     mise1.innerHTML = "";
+    zoneJeu.style.flexDirection = "row";
     afficherMises(mise1, joueur.mise1);
     afficherMises(mise2, joueur.mise2);
     afficherBouton(split, "none");
     afficherBouton(double, "none");
-    distribuer(joueur, 1, joueur.jeu, "jeu1Joueur");
-    distribuer(joueur, 1, joueur.jeu2, "jeu2Joueur");
+    distribuer(joueur.jeu, 1);
+    distribuer(joueur.jeu2, 1);
+    afficherJeu(joueur,joueur.jeu,"jeu1Joueur");
+    afficherJeu(joueur,joueur.jeu2,"jeu2Joueur");
+    joueur.poidsJeu = calculPoids(joueur.jeu,joueur);
+    joueur.poidsJeu2 = calculPoids(joueur.jeu2,joueur);
+    verifierJeu(joueur.jeu, joueur.poidsJeu);
     jeuEnCours = 1;
     selectionJeu2.style.border = "none";
     selectionJeu1.style.border = "5px solid greenyellow";
+
 });
 
 // demande de carte
 carte.addEventListener("click", function () {
-    if (jeuDouble === true) {
-        if (jeuEnCours == 1) {
-            distribuer(joueur, 1, joueur.jeu, "jeu1Joueur");
 
+        if (jeuEnCours == 1) {
+            distribuer(joueur.jeu, 1);
+            afficherJeu(joueur, joueur.jeu, "jeu1Joueur");
+            joueur.poidsJeu = calculPoids(joueur.jeu,joueur);
+            verifierJeu(joueur.jeu, joueur.poidsJeu);
         }
-        if (jeuEnCours == 2) {
-            distribuer(joueur, 1, joueur.jeu2, "jeu2Joueur");
+        else if (jeuEnCours == 2) {
+            distribuer(joueur.jeu2, 1);
+            afficherJeu(joueur, joueur.jeu2, "jeu2Joueur");
+            joueur.poidsJeu2 = calculPoids(joueur.jeu2,joueur);
+            verifierJeu(joueur.jeu2, joueur.poidsJeu2);
         }
-    } else {
-        distribuer(joueur, 1, joueur.jeu, "jeu1Joueur");
+    else {
+        distribuer(joueur.jeu, 1);
+        afficherJeu(joueur, joueur.jeu, "jeu1Joueur");
+        joueur.poidsJeu = calculPoids(joueur.jeu,joueur);
+        verifierJeu(joueur.jeu, joueur.poidsJeu);
     }
 
 });
 // le bouton lance la distribution de carte pour le bot
 // puis on compare les jeux pour déclarer  le vainqueur
 passe.addEventListener("click", function () {
-    if (double === true) {
         if (jeuEnCours == 1) {
             jeuEnCours = 2;
             selectionJeu1.style.border = "none";
             selectionJeu2.style.border = "5px solid greenyellow";
         }
-        if (jeuEnCours == 2) {
+        else if (jeuEnCours == 2) {
             while (bot.poidsJeu < 17) {
-                distribuer(bot, 1, bot.jeu, "jeuBot");
+                distribuer(bot.jeu, 1);
+                bot.poidsJeu = calculPoids(bot.jeu,bot);
             }
+            finTour = true;
+            afficherJeu(bot, bot.jeu, "jeuBot");
+            console.log("appel Resultat JEU");
+            resultatJeu(bot.poidsJeu, joueur.poidsJeu, joueur.mise1,messFinJ1);
+            resultatJeu(bot.poidsJeu, joueur.poidsJeu2, joueur.mise2,messFinJ2);
         }
-    } else while (bot.poidsJeu < 17) {
-        distribuer(bot, 1, bot.jeu, "jeuBot");
+    else {
+        while (bot.poidsJeu < 17) {
+            distribuer(bot.jeu, 1);
+            bot.poidsJeu = calculPoids(bot.jeu,bot);
+        }
+        finTour = true;
+        afficherJeu(bot, bot.jeu, "jeuBot");
+        console.log("appel Resultat JEU");
+        resultatJeu(bot.poidsJeu, joueur.poidsJeu, joueur.mise,messFin);
     }
 
-    resultatJeu(bot.poidsJeu, joueur.poidsJeu);
-    resultatJeu(bot.poidsJeu, joueur.poidsJeu2);
+
 });
 
-mise10.addEventListener("click", function () {
-    afficherBouton(annulerMise, "block");
-    joueur.mise += 10;
-    mise1.innerHTML += "<img src='IMAGES/jeton10.png' height='50px'>";
+/******************************************
+ *******GESTION DE LA FONCTION MISE *******
+ ******************************************/
 
+
+mise10.addEventListener("click", function () {
+    if (joueur.cagnotte >= 10) {
+        joueur.mise += 10;
+        joueur.cagnotte -= 10;
+        afficherBouton(annulerMise, "block");
+        mise1.innerHTML += "<img src='IMAGES/jeton10.png' height='50px'>";
+        cagnotte.innerHTML = joueur.cagnotte + "€";
+    }
 });
 
 mise20.addEventListener("click", function () {
-    afficherBouton(annulerMise, "block");
-    joueur.mise += 20;
-    mise1.innerHTML += "<img src='IMAGES/jeton20.png' height='50px'>";
-
+    if (joueur.cagnotte >= 20) {
+        joueur.mise += 20;
+        joueur.cagnotte -= 20;
+        afficherBouton(annulerMise, "block");
+        mise1.innerHTML += "<img src='IMAGES/jeton20.png' height='50px'>";
+        cagnotte.innerHTML = joueur.cagnotte + "€";
+    }
 });
 
 mise50.addEventListener("click", function () {
-    afficherBouton(annulerMise, "block");
-    joueur.mise += 50;
-    mise1.innerHTML += "<img src='IMAGES/jeton50.png' height='50px'>";
+    if (joueur.cagnotte >= 50) {
+        joueur.mise += 50;
+        joueur.cagnotte -= 50;
+        afficherBouton(annulerMise, "block");
+        mise1.innerHTML += "<img src='IMAGES/jeton50.png' height='50px'>";
+        cagnotte.innerHTML = joueur.cagnotte + "€";
+    }
 });
 
 mise100.addEventListener("click", function () {
-    afficherBouton(annulerMise, "block");
-    joueur.mise += 100;
-    mise1.innerHTML += "<img src='IMAGES/jeton100.png' height='50px'>";
-
+    if (joueur.cagnotte >= 100) {
+        joueur.mise += 100;
+        joueur.cagnotte -= 100;
+        afficherBouton(annulerMise, "block");
+        mise1.innerHTML += "<img src='IMAGES/jeton100.png' height='50px%'>";
+        cagnotte.innerHTML = joueur.cagnotte + "€";
+    }
 });
+
 annulerMise.addEventListener("click", function () {
     afficherBouton(annulerMise, "none");
     joueur.mise = 0;
     mise1.innerHTML = "";
 });
+
