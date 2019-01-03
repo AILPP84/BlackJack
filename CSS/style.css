@@ -203,11 +203,6 @@ a {
     padding:5px;
 }
 
-.joueur2 {
-    /*display: inline-flex;*/
-    justify-content: center;
-}
-
 #messageFin, #messFinJeu1, #messFinJeu2 {
     background-color: rgba(248, 248, 255, 0.5);
     font-family: Arial;
@@ -235,15 +230,6 @@ a {
 }
 
 #zoneBouton li button {
-    /*background-color: red;*/
-    /*width: 50px;*/
-    /*height: 50px;*/
-    /*border-radius: 40px;*/
-    /*font-size: .6em;*/
-    /*font-family: "numerique", serif;*/
-    /*margin: 10px 0 10px 0;*/
-    /*box-shadow: 0 5px 0 #ae100e;*/
-    /*outline: none;*/
     color: white;
     background-image: url("../IMAGES/jouer.png");
     background-size: contain;
@@ -259,10 +245,6 @@ a {
 }
 
 #zoneBouton li button:active {
-    /*box-shadow: none;*/
-    /*position: relative;*/
-    /*top: 5px;*/
-    /*color: greenyellow;*/
     box-shadow: none;
     position: relative;
     top: 5px;
