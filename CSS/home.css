@@ -256,7 +256,7 @@ input[type="radio"] {
     margin: 0 25px 0 0;
 }
 
-#valider {
+#valider, #charger{
     color: white;
     background-image: url("../IMAGES/jouer.png");
     background-size: contain;
@@ -264,7 +264,6 @@ input[type="radio"] {
     width: 125px;
     height: 70px;
     border-radius: 10px;
-    margin-left: 50%;
     font-size: 1.5em;
     font-family: "numerique", serif;
     box-shadow: 0 5px 0 #439216;
