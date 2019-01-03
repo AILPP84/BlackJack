@@ -268,16 +268,24 @@ footer {
     margin-left: 25%;
 }
 ul.dos{
-    margin: 0;
+    margin: 25px;
     padding: 0;
     display: flex;
     width: 100%;
     justify-content: center;
 }
 
+.saisie label {
+    margin: 0 10px 0 0;
+}
+
 input[type="radio"] {
-    visibility: hidden;
-    margin: 0 -25 px 0 0;
+    visibility:hidden;
+    margin: 0 -25px 0 0;
+}
+
+.dos img {
+    margin: 0 25px 0 0;
 }
 
 #valider {
@@ -295,6 +303,7 @@ input[type="radio"] {
     outline: none;
 }
 
+
 #valider:active {
     box-shadow: none;
     position: relative;
@@ -305,6 +314,7 @@ button#valider {
     display: flex;
     justify-content: center;
 }
+
 #dosBleu{
     background-image: url("../IMAGES/blue_back.jpg");
 }
