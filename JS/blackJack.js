@@ -229,6 +229,13 @@ function verificationApresAs(quelJeu, quelPoids) {
     verifierJeu(quelJeu, quelPoids);
 }
 
+
+class Nom {
+    constructor() {
+        console.log()
+    }
+}
+
 /* Vérification du jeu */
 function verifierJeu(quelJeu, quelPoids) {
 
