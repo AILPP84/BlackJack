@@ -78,7 +78,7 @@ a {
     background-color: rgba(192, 192, 192, 0.7);
     padding: 1px;
     font-family: 'Noto Sans KR', sans-serif;
-    z-index: -1;
+    z-index: auto;
 }
 
 .Regles li {
@@ -203,10 +203,11 @@ a {
     padding:5px;
 }
 
-.joueur2 {
+/*.joueur2 {*/
     /*display: inline-flex;*/
-    justify-content: center;
-}
+    /*justify-content: center;*/
+/*}*/
+
 
 #messageFin, #messFinJeu1, #messFinJeu2 {
     background-color: rgba(248, 248, 255, 0.5);
@@ -419,9 +420,6 @@ footer {
     text-align: center;
     font-family: "Tahoma", serif;
     font-size: 12px;
-    position: fixed;
-    top: 670px;
-    left: 550px;
 }
 
 /*************************************
