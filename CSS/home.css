@@ -90,7 +90,6 @@ body{
     background-repeat: repeat;
     perspective : 1200px;
 }
-
 #contener{
     display:flex;
     flex-direction: column;
@@ -185,27 +184,7 @@ a {
     z-index: 1;
 }
 
-#valider {
-    color: white;
-    background-image: url("../IMAGES/jouer.png");
-    background-size: contain;
-    background-repeat: round;
-    width: 125px;
-    height: 70px;
-    border-radius: 10px;
-    margin: auto;
-    font-size: 1.5em;
-    font-family: "numerique", serif;
-    box-shadow: 0 7px 0 #439216;
-    outline: none;
-}
 
-#valider:active {
-    box-shadow: none;
-    position: relative;
-    top: 7px;
-    color: greenyellow;
-}
 
 /*************************************
 *************** FOOTER ***************
@@ -217,7 +196,7 @@ footer {
     font-size: 12px;
     position: fixed;
     top: 670px;
-    left: 550px;
+    left: 570px;
 }
 
 /*************************************
@@ -234,6 +213,11 @@ footer {
     text-shadow: 5px 5px darkslategrey;
 }
 
+#zoneTapis{
+    display: flex;
+    flex-direction: column;
+    /*justify-contents: center;*/
+}
 .animation li {
 
     text-align: center;
@@ -260,21 +244,20 @@ footer {
     animation: cubes3 30s infinite alternate-reverse;
     -webkit-animation: cubes3 30s infinite alternate-reverse;
 }
-
-
-.formulaire {
+.formulaire{
     display: none;
     background-image:none;
+    flex-direction: column;
     width: 100%;
     height: 70%;
     font-weight: bolder;
     justify-content: center;
+
 }
 
 /*************************************
 ************* FORMULAIRE *************
 *************************************/
-
 .formulaire p{
     text-align: center;
     font-size: 1.5em;
@@ -284,7 +267,6 @@ footer {
     list-style: none;
     margin-left: 25%;
 }
-
 ul.dos{
     margin: 25px;
     padding: 0;
@@ -306,9 +288,31 @@ input[type="radio"] {
     margin: 0 25px 0 0;
 }
 
+#valider {
+    color: white;
+    background-image: url("../IMAGES/jouer.png");
+    background-size: contain;
+    background-repeat: round;
+    width: 125px;
+    height: 70px;
+    border-radius: 10px;
+    margin-left: 50%;
+    font-size: 1.5em;
+    font-family: "numerique", serif;
+    box-shadow: 0 5px 0 #439216;
+    outline: none;
+}
+
+
+#valider:active {
+    box-shadow: none;
+    position: relative;
+    top: 7px;
+    color: greenyellow;
+}
 button#valider {
-display: flex;
-justify-content: center;
+    display: flex;
+    justify-content: center;
 }
 
 #dosBleu{
