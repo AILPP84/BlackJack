@@ -24,7 +24,6 @@ let zoneJeu2 = document.querySelector(".joueur2");
 
 let couleurs = ["d", "s", "h", "c"];
 let valeurs = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"];
-// let valeurs = ["10", "10", "10", "4", "6", "6", "8", "8", "10", "10", "Q", "Q", "A"];
 let poids = [2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 11];
 let niveauPaquet = 0; //varirable intermédiaire pour gérer l'indice du paquet
 let indicePaquet = 0; //variable pour mémoriser la place dans le paquet
