@@ -301,7 +301,7 @@ input[type="radio"] {
     top: 7px;
     color: greenyellow;
 }
-button#valider {
+button #valider {
     display: flex;
     justify-content: center;
 }
