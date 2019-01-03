@@ -1,35 +1,35 @@
 @keyframes cubes1 {
     0% {
-        transform: translateX(200px) scale(1);
-        -webkit-transform: translateX(200px) scale(1);
+        transform: translateX(135px) scale(1);
+        -webkit-transform: translateX(135px) scale(1);
         background-image: url("../images/4h.gif");
         -webkit-background-image: url("../images/4h.gif");
 
     }
     25% {
-        transform: translateX(200px) scale(0.7);
-        -webkit-transform: translateX(200px) scale(0.7);
+        transform: translateX(135px) scale(0.7);
+        -webkit-transform: translateX(135px) scale(0.7);
         background-image: url("../images/4s.gif");
         -webkit-background-image: url("../images/4s.gif");
 
     }
     50% {
-        transform: translateX(200px) scale(1);
-        -webkit-transform: translateX(200px) scale(1);
+        transform: translateX(135px) scale(1);
+        -webkit-transform: translateX(135px) scale(1);
         background-image: url("../images/4d.gif");
         -webkit-background-image: url("../images/4d.gif");
 
     }
     75% {
-        transform: translateX(200px) scale(0.7);
+        transform: translateX(135px) scale(0.7);
         background-image: url("../images/4c.gif");
         -webkit-background-image: url("../images/4c.gif");
-        -webkit-transform: translateX(200px) scale(0.7);
+        -webkit-transform: translateX(135px) scale(0.7);
 
     }
     100% {
-        transform: translateX(200px) scale(1);
-        -webkit-transform: translateX(200px) scale(1);
+        transform: translateX(135px) scale(1);
+        -webkit-transform: translateX(135px) scale(1);
         background-image: url("../images/4h.gif");
         -webkit-background-image: url("../images/4h.gif");
 
