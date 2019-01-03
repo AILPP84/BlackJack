@@ -122,7 +122,8 @@ function initialiser() {
     afficherBouton(mise20, "block");
     afficherBouton(mise50, "block");
     afficherBouton(mise100, "block");
-    afficherBouton(demarrer, "block");
+    // afficherBouton(demarrer, "block");
+    demarrer.style.visibility = "hidden";
     afficherBouton(rejouer, "none");
     afficherBouton(annulerMise, "none");
     mise1.innerHTML = "";
@@ -453,7 +454,8 @@ demarrer.addEventListener("click", function () {
     afficherBouton(mise20, "none");
     afficherBouton(mise50, "none");
     afficherBouton(mise100, "none");
-    afficherBouton(demarrer, "none");
+    // afficherBouton(demarrer, "none");
+    demarrer.style.visibility = "hidden";
 });
 
 rejouer.addEventListener("click", function () {
@@ -583,6 +585,7 @@ mise10.addEventListener("click", function () {
         afficherBouton(annulerMise, "block");
         mise1.innerHTML += "<img src='IMAGES/jeton10.png' height='50px'>";
         cagnotte.innerHTML = joueur.cagnotte + "€";
+        demarrer.style.visibility = "visible";
     }
 });
 
@@ -593,6 +596,7 @@ mise20.addEventListener("click", function () {
         afficherBouton(annulerMise, "block");
         mise1.innerHTML += "<img src='IMAGES/jeton20.png' height='50px'>";
         cagnotte.innerHTML = joueur.cagnotte + "€";
+        demarrer.style.visibility = "visible";
     }
 });
 
@@ -603,6 +607,7 @@ mise50.addEventListener("click", function () {
         afficherBouton(annulerMise, "block");
         mise1.innerHTML += "<img src='IMAGES/jeton50.png' height='50px'>";
         cagnotte.innerHTML = joueur.cagnotte + "€";
+        demarrer.style.visibility = "visible";
     }
 });
 
@@ -613,6 +618,7 @@ mise100.addEventListener("click", function () {
         afficherBouton(annulerMise, "block");
         mise1.innerHTML += "<img src='IMAGES/jeton100.png' height='50px%'>";
         cagnotte.innerHTML = joueur.cagnotte + "€";
+        demarrer.style.visibility = "visible";
     }
 });
 
@@ -620,5 +626,6 @@ annulerMise.addEventListener("click", function () {
     afficherBouton(annulerMise, "none");
     joueur.mise = 0;
     mise1.innerHTML = "";
+    demarrer.style.visibility = "hidden";
 });
 
