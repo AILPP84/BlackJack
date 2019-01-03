@@ -117,7 +117,8 @@ function initialiser() {
     afficherBouton(mise20, "block");
     afficherBouton(mise50, "block");
     afficherBouton(mise100, "block");
-    afficherBouton(demarrer, "block");
+    // afficherBouton(demarrer, "block");
+    demarrer.style.visibility = "hidden";
     afficherBouton(rejouer, "none");
     afficherBouton(annulerMise, "none");
     mise1.innerHTML = "";
@@ -237,6 +238,9 @@ function calculPoids(quelJeu, qui) {
     return (quelPoids);
 }
 
+
+
+/* Vérification du jeu */
 
 function verifierJeu(quelJeu, quelPoids) {
 
@@ -503,7 +507,8 @@ demarrer.addEventListener("click", function () {
     afficherBouton(mise20, "none");
     afficherBouton(mise50, "none");
     afficherBouton(mise100, "none");
-    afficherBouton(demarrer, "none");
+    // afficherBouton(demarrer, "none");
+    demarrer.style.visibility = "hidden";
 });
 
 rejouer.addEventListener("click", function () {
@@ -637,6 +642,7 @@ mise10.addEventListener("click", function () {
         afficherBouton(annulerMise, "block");
         mise1.innerHTML += "<img src='IMAGES/jeton10.png' height='50px'>";
         cagnotte.innerHTML = joueur.cagnotte + "€";
+        demarrer.style.visibility = "visible";
     }
     controleCagnotte(joueur.cagnotte);
 });
@@ -649,21 +655,19 @@ mise20.addEventListener("click", function () {
         afficherBouton(annulerMise, "block");
         mise1.innerHTML += "<img src='IMAGES/jeton20.png' height='50px'>";
         cagnotte.innerHTML = joueur.cagnotte + "€";
+        demarrer.style.visibility = "visible";
     }
     controleCagnotte(joueur.cagnotte);
 });
 
 mise50.addEventListener("click", function () {
-<<<<<<< HEAD
-=======
-
->>>>>>> master
     if (joueur.cagnotte >= 50) {
         joueur.mise += 50;
         joueur.cagnotte -= 50;
         afficherBouton(annulerMise, "block");
         mise1.innerHTML += "<img src='IMAGES/jeton50.png' height='50px'>";
         cagnotte.innerHTML = joueur.cagnotte + "€";
+        demarrer.style.visibility = "visible";
     }
     controleCagnotte(joueur.cagnotte);
 });
@@ -676,6 +680,7 @@ mise100.addEventListener("click", function () {
         afficherBouton(annulerMise, "block");
         mise1.innerHTML += "<img src='IMAGES/jeton100.png' height='50px%'>";
         cagnotte.innerHTML = joueur.cagnotte + "€";
+        demarrer.style.visibility = "visible";
     }
     controleCagnotte(joueur.cagnotte);
 });
@@ -686,5 +691,6 @@ annulerMise.addEventListener("click", function () {
     cagnotte.innerHTML = joueur.cagnotte + "€";
     joueur.mise = 0;
     mise1.innerHTML = "";
+    demarrer.style.visibility = "hidden";
 });
 
