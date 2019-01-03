@@ -116,12 +116,6 @@ h1 {
     color: white;
 }
 
-/*ul {*/
-
-/*display: inline-flex;*/
-/*justify-content: space-around;*/
-/*}*/
-
 .Regles li {
     padding: 0 10px 0 10px;
     font-size: 1.5em;
@@ -216,34 +210,8 @@ footer {
 #zoneTapis{
     display: flex;
     flex-direction: column;
-    /*justify-contents: center;*/
-}
-.animation li {
-
-    text-align: center;
-    line-height: 600%;
-    height: 95px;
-    width: 70px;
-
 }
 
-.flex-item1 {
-
-    animation: cubes1 30s infinite alternate-reverse;
-    -webkit-animation: cubes1 30s infinite alternate-reverse;
-}
-
-.flex-item2 {
-
-    animation: cubes2 30s infinite alternate-reverse;
-    -webkit-animation: cubes2 30s infinite alternate-reverse;
-}
-
-.flex-item3 {
-
-    animation: cubes3 30s infinite alternate-reverse;
-    -webkit-animation: cubes3 30s infinite alternate-reverse;
-}
 .formulaire{
     display: none;
     background-image:none;
