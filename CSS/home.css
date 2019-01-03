@@ -251,9 +251,13 @@ footer {
     width: 100%;
     height: 70%;
     font-weight: bolder;
-    justify-contents: center;
+    justify-content: center;
 
 }
+
+/*************************************
+************* FORMULAIRE *************
+*************************************/
 .formulaire p{
     text-align: center;
     font-size: 1.5em;
@@ -263,6 +267,19 @@ footer {
     list-style: none;
     margin-left: 25%;
 }
+ul.dos{
+    margin: 0;
+    padding: 0;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+input[type="radio"] {
+    visibility: hidden;
+    margin: 0 -25 px 0 0;
+}
+
 #valider {
     color: white;
     background-image: url("../IMAGES/jouer.png");
@@ -284,7 +301,10 @@ footer {
     top: 7px;
     color: greenyellow;
 }
-
+button#valider {
+    display: flex;
+    justify-content: center;
+}
 #dosBleu{
     background-image: url("../IMAGES/blue_back.jpg");
 }
