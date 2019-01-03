@@ -203,11 +203,13 @@ a {
     padding:5px;
 }
 
-#messageFin, #messFinJeu1, #messFinJeu2 {
+/*#messageFin, #messFinJeu1, #messFinJeu2 {*/
+    /*font-family: Arial;*/
+/*}*/
+mark {
     background-color: rgba(248, 248, 255, 0.5);
     font-family: Arial;
 }
-
 #zoneTapisBouton {
     display: flex;
     width: 80%;
