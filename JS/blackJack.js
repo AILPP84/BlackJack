@@ -610,10 +610,11 @@ mise10.addEventListener("click", function () {
         mise1.innerHTML += "<img src='IMAGES/jeton10.png' height='50px'>";
         cagnotte.innerHTML = joueur.cagnotte + "€";
     }
+    controleCagnotte(joueur.cagnotte);
 });
 
 mise20.addEventListener("click", function () {
-    controleCagnotte(joueur.cagnotte);
+
     if (joueur.cagnotte >= 20) {
         joueur.mise += 20;
         joueur.cagnotte -= 20;
@@ -621,10 +622,10 @@ mise20.addEventListener("click", function () {
         mise1.innerHTML += "<img src='IMAGES/jeton20.png' height='50px'>";
         cagnotte.innerHTML = joueur.cagnotte + "€";
     }
+    controleCagnotte(joueur.cagnotte);
 });
 
 mise50.addEventListener("click", function () {
-    controleCagnotte(joueur.cagnotte);
     if (joueur.cagnotte >= 50) {
         joueur.mise += 50;
         joueur.cagnotte -= 50;
@@ -632,10 +633,11 @@ mise50.addEventListener("click", function () {
         mise1.innerHTML += "<img src='IMAGES/jeton50.png' height='50px'>";
         cagnotte.innerHTML = joueur.cagnotte + "€";
     }
+    controleCagnotte(joueur.cagnotte);
 });
 
 mise100.addEventListener("click", function () {
-    controleCagnotte(joueur.cagnotte);
+
     if (joueur.cagnotte >= 100) {
         joueur.mise += 100;
         joueur.cagnotte -= 100;
@@ -643,6 +645,7 @@ mise100.addEventListener("click", function () {
         mise1.innerHTML += "<img src='IMAGES/jeton100.png' height='50px%'>";
         cagnotte.innerHTML = joueur.cagnotte + "€";
     }
+    controleCagnotte(joueur.cagnotte);
 });
 
 annulerMise.addEventListener("click", function () {
