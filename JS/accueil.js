@@ -14,6 +14,9 @@ let tableauCorrespondanceDos = ["blue_back", "Gray_back", "Green_back", "Red_bac
 localStorage.setItem("choixDos", 0); // Selectionne le dos de carte bleue par défaut
 tableauDosCarte[localStorage.choixDos].style.transform = "translateY(-10px)";
 localStorage.dos = tableauCorrespondanceDos[localStorage.choixDos];
+let cagnotte = document.querySelector("#cagnotte");
+let alerteCagnotte = document.querySelector("#alerte");
+let alerte = "";
 
 function afficheSelectionDos() {
     for (i = 0; i < tableauDosCarte.length; i++) {
@@ -22,7 +25,6 @@ function afficheSelectionDos() {
     tableauDosCarte[localStorage.choixDos].style.transform = "translateY(-10px)";
     localStorage.dos = tableauCorrespondanceDos[localStorage.choixDos];
 }
-
 /**
  * Selection du dos de carte
  */
@@ -65,16 +67,39 @@ document.getElementById('dosPurple').addEventListener("click", function () {
     localStorage.choixDos = 5;
     afficheSelectionDos();
 });
+window.onload = function () {
+    alerte = "";
+    alerteCagnotte.innerHTML = alerte;
+};
+function rafraichirPage() {
+    window.location.replace("index.html");
+};
 
 boutonJouer.addEventListener('click', function (){
     formulaire.style.display = "flex";
     animation.style.display = "none";
     document.querySelector("#valider").addEventListener("click",function(){
 
-        localStorage.setItem("pseudo",document.querySelector("#pseudo").value);
-        localStorage.setItem("cagnotte",document.querySelector("#cagnotte").value);
+        for (let i = 0; i < dosCarte.length; i++) {
+            if (dosCarte[i].checked){
+                localStorage.setItem("dos",`${dosCarte[i].value}_back`);
+            }
+        }
+        if (cagnotte.value < 100){
+            alerte = "Vous devez saisir un montant de cagnotte supérieur à 100.";
+            alerteCagnotte.style.backgroundColor = "white";
+            alerteCagnotte.style.color ="red";
+            alerteCagnotte.innerHTML = alerte ;
+            setInterval(function (){
+                rafraichirPage()}, 3000);
+        }
+        else {
 
-        document.location.href="jeu.html";
+            localStorage.setItem("pseudo", document.querySelector("#pseudo").value);
+            localStorage.setItem("cagnotte", cagnotte.value);
+            window.location.replace("jeu.html");
+        }
+
     });
 });
 
