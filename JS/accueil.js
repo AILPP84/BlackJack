@@ -28,7 +28,7 @@ function afficheSelectionDos() {
  */
 
 // Selection du dos bleu
-dosBlue.addEventListener("click", function(){
+document.getElementById('dosBlue').addEventListener("click", function(){
 //     document.querySelector('.dos').addEventListener("click", function (e) {
 //         localStorage.dos = e.path[2].childElementCount - 1;
 //         console.log(e.path[2].childElementCount - 1);
