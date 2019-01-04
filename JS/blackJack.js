@@ -82,6 +82,21 @@ for (let i = 0; i < couleurs.length; i++) {
     }
 }
 
+function creerCookie(jours) {
+// Le nombre de jours est spécifié
+    if (jours) {
+        var date = new Date();
+        // Converti le nombre de jour en millisecondes
+        date.setTime(date.getTime()+(jours*24*60*60*1000));
+        var expire = "; expire="+date.toGMTString();
+    }
+    // Aucune valeur de jours spécifiée
+    else var expire = "";
+    document.cookie = "pseudo = " + localStorage.pseudo + expire + "; path=/";
+    document.cookie = "cagnotte = " + localStorage.cagnotte + expire + "; path=/";
+}
+
+
 // initialisation du jeu : la fonction sera appellée au chargement de la page et lorsque l'on appuie sur rejouer
 function initialiser() {
     k = 0;
@@ -328,7 +343,6 @@ function resultatJeu(poidsBot, poidsJoueur, mise, ou, jeu) {
         afficherBouton(passe, "none");
         afficherBouton(rejouer, "block");
         cagnotte.innerHTML = joueur.cagnotte + "€";
-        localStorage.setItem("cagnotte", joueur.cagnotte);
         messageFin = "<mark>Dommage, vous avez perdu! </mark>";
 
 // si le score de la banque est supérieur à 21 le joueur gagne
@@ -339,7 +353,6 @@ function resultatJeu(poidsBot, poidsJoueur, mise, ou, jeu) {
         afficherBouton(rejouer, "block");
         joueur.cagnotte += mise * 2;
         cagnotte.innerHTML = joueur.cagnotte + "€";
-        localStorage.setItem("cagnotte", joueur.cagnotte);
         messageFin += "<mark>Vous avez gagné!!! Voici votre gain : <br>";
         indice = parseInt(Math.random(0, 18) * 10);
         messageFin += blagues[indice] + "</mark>";
@@ -354,7 +367,7 @@ function resultatJeu(poidsBot, poidsJoueur, mise, ou, jeu) {
         afficherBouton(passe, "none");
         afficherBouton(rejouer, "block");
         cagnotte.innerHTML = joueur.cagnotte + "€";
-        localStorage.setItem("cagnotte", joueur.cagnotte);
+        creerCookie(7);
         messageFin = "<mark>Dommage, vous avez perdu! </mark>";
 
 //si le score du joueur est supérieur à celui de la banque, alors le joueur a gagné
@@ -365,7 +378,6 @@ function resultatJeu(poidsBot, poidsJoueur, mise, ou, jeu) {
         afficherBouton(rejouer, "block");
         joueur.cagnotte += mise * 2;
         cagnotte.innerHTML = joueur.cagnotte + "€";
-        localStorage.setItem("cagnotte", joueur.cagnotte);
         messageFin += "<mark>Vous avez gagné!!! Voici votre gain : <br>";
         indice = parseInt(Math.random(0, 18) * 10);
         messageFin += blagues[indice] + "</mark>";
@@ -377,13 +389,13 @@ function resultatJeu(poidsBot, poidsJoueur, mise, ou, jeu) {
         afficherBouton(rejouer, "block");
         joueur.cagnotte += mise;
         cagnotte.innerHTML = joueur.cagnotte + "€";
-        localStorage.setItem("cagnotte", joueur.cagnotte);
         messageFin += "<mark>Vous êtes à égalité avec la banque! Vous récupérez votre mise.</mark>";
 
     }
+    localStorage.setItem("cagnotte", joueur.cagnotte);
+    creerCookie(7);
     ou.innerHTML = messageFin;
     messageFin = "";
-
 }
 
 /* Gestion de l'affichage de la mise en cas de split */
