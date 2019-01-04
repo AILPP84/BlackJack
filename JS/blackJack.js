@@ -84,14 +84,13 @@ for (let i = 0; i < couleurs.length; i++) {
 
 function creerCookie(jours) {
 // Le nombre de jours est spécifié
+    let expire ="";
     if (jours) {
-        var date = new Date();
+        let date = new Date();
         // Converti le nombre de jour en millisecondes
-        date.setTime(date.getTime()+(jours*24*60*60*1000));
-        var expire = "; expire="+date.toGMTString();
+        date.setTime(date.getTime() + (jours * 24 * 60 * 60 * 1000));
+        expire = "; expires=" + date.toGMTString();
     }
-    // Aucune valeur de jours spécifiée
-    else var expire = "";
     document.cookie = "pseudo = " + localStorage.pseudo + expire + "; path=/";
     document.cookie = "cagnotte = " + localStorage.cagnotte + expire + "; path=/";
 }
@@ -254,7 +253,6 @@ function calculPoids(quelJeu, qui) {
 }
 
 
-
 /* Vérification du jeu */
 
 function verifierJeu(quelJeu, quelPoids) {
@@ -367,7 +365,6 @@ function resultatJeu(poidsBot, poidsJoueur, mise, ou, jeu) {
         afficherBouton(passe, "none");
         afficherBouton(rejouer, "block");
         cagnotte.innerHTML = joueur.cagnotte + "€";
-        creerCookie(7);
         messageFin = "<mark>Dommage, vous avez perdu! </mark>";
 
 //si le score du joueur est supérieur à celui de la banque, alors le joueur a gagné
