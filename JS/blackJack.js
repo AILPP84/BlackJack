@@ -402,7 +402,7 @@ function resultatJeu(poidsBot, poidsJoueur, mise, ou, jeu) {
 function afficherMises(ou, quelleMise) {
     splitMise = quelleMise;
     while (splitMise > 0) {
-        while ((quelleMise / 100) >= 1) {
+        while ((splitMise / 100) >= 1) {
             splitMise -= 100;
             ou.innerHTML += "<img src='IMAGES/jeton100.png' height='50px'>";
         }
