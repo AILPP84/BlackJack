@@ -32,6 +32,10 @@ let indice = 0;
 let splitMise = 0;
 let jeuEnCours = 0;
 let finTour = false;
+let bouton = new Audio("SONS/crash.mp3");
+let perdu = new Audio("SONS/perdu.mp3");
+let blackJ = new Audio("SONS/blackJack.mp3");
+let encaisser = new Audio("SONS/caisse.mp3");
 let blagues = ["Deux volcans discutent :<br>" + "Mais dis-moi, t'aurais pas arrêté de fumer ?",
     " Comment appelle t-on une fleur qui prend sa graine à moitié ?<br>" + "Une migraine.",
     "Quelles sont les lettres qui sont toujours aux toilettes: <br>" + "Ce sont les lettres WC et PQ",
@@ -338,19 +342,23 @@ function resultatJeu(poidsBot, poidsJoueur, mise, ou, jeu) {
         if (jeu.length <= 2) {
             console.log("blackjack détecté");
             messageFin = "<mark>BLACKJACK <br>";
+            blackJ.play();
             messageFin += "Vous avez gagné!!! Voici votre gain : <br>";
             indice = parseInt(Math.random(0, 18) * 10);
             messageFin += blagues[indice] + "</mark>";
+            encaisser.play();
             mise = mise * (5 / 2);
             joueur.cagnotte += mise;
             // si la banque à un blackjack et le joueur + de 2 cartes
         } else if ((bot.jeu.length == 2) && (poidsBot == 21)) {
             messageFin = "<mark>BlackJack de la banque, vous avez perdu!!</mark>";
+            perdu.play();
             // dans les autres cas le joueur a gagné
         } else {
             messageFin += "<mark>Vous avez gagné!!! Voici votre gain : <br>";
             indice = parseInt(Math.random(0, 18) * 10);
             messageFin += blagues[indice] + "</mark>";
+            encaisser.play();
             joueur.cagnotte += mise * 2;
         }
         //si le score du joueur dépasse 21 alors le joueur a perdu
@@ -361,6 +369,7 @@ function resultatJeu(poidsBot, poidsJoueur, mise, ou, jeu) {
         afficherBouton(rejouer, "block");
         cagnotte.innerHTML = joueur.cagnotte + "€";
         messageFin = "<mark>Dommage, vous avez perdu! </mark>";
+        perdu.play();
 
 // si le score de la banque est supérieur à 21 le joueur gagne
     } else if (poidsBot > 21) {
@@ -373,6 +382,7 @@ function resultatJeu(poidsBot, poidsJoueur, mise, ou, jeu) {
         messageFin += "<mark>Vous avez gagné!!! Voici votre gain : <br>";
         indice = parseInt(Math.random(0, 18) * 10);
         messageFin += blagues[indice] + "</mark>";
+        encaisser.play();
         /******************************************************************/
         /* ni le joueur ni la banque n'a 21 points ou plus dans son jeu*/
         /******************************************************************/
@@ -385,6 +395,7 @@ function resultatJeu(poidsBot, poidsJoueur, mise, ou, jeu) {
         afficherBouton(rejouer, "block");
         cagnotte.innerHTML = joueur.cagnotte + "€";
         messageFin = "<mark>Dommage, vous avez perdu! </mark>";
+        perdu.play();
 
 //si le score du joueur est supérieur à celui de la banque, alors le joueur a gagné
     } else if (poidsJoueur > poidsBot) {
@@ -397,6 +408,7 @@ function resultatJeu(poidsBot, poidsJoueur, mise, ou, jeu) {
         messageFin += "<mark>Vous avez gagné!!! Voici votre gain : <br>";
         indice = parseInt(Math.random(0, 18) * 10);
         messageFin += blagues[indice] + "</mark>";
+        encaisser.play();
 
 // si les scores sont égaux, le joueur gagne
     } else if (poidsJoueur == poidsBot) {
@@ -511,6 +523,7 @@ window.onload = function () {
 
 //début du jeu
 demarrer.addEventListener("click", function () {
+
     messageFin = "";
     messFin.innerHTML = messageFin;
     // Melanger le paquet
