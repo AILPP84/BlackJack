@@ -21,14 +21,14 @@
 
 #bandeau {
     width: 100%;
-    height: 20vmin;
-    min-height: 120px;
+    height: 5vmin;
+    min-height: 80px;
     display: flex;
     justify-content: space-between;
 }
 
 #logo {
-    height: 100px;
+    height: 80px;
     width: auto;
     margin: 0 0 0 10px;
     padding: 10px;
@@ -96,7 +96,6 @@ a {
     opacity: 1;
     z-index: 150;
 }
-
 /*************************************
 ************** ZONE JEU **************
 *************************************/
@@ -107,7 +106,9 @@ a {
     display: flex;
     justify-content: center;
     z-index: 1;
+    /*margin-bottom: 1vh;*/
 }
+
 
 
 /*************************************
@@ -115,22 +116,41 @@ a {
 *************************************/
 #zoneCagnotte {
     width: 20%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     /*flex-wrap: wrap;*/
-    justify-content: flex-end;
+    justify-content: space-between;
     padding: 0 0 25px 25px;
     margin-bottom: 2vh;
     align-items: center;
 }
 
-#zoneCagnotte img {
+#paquet{
+    list-style: none;
+    margin-left: 10%;
+    display: flex;
+    flex-direction: row;
+}
+.jetons{
+    height: 50%;
+    width: 85%;
+    /*display: flex;*/
+    justify-content: flex-end;
+    /*align-content: space-between;*/
+
+
+}
+.jetons img {
     width: 100%;
     height: auto;
-    margin: 10px;
+    margin-left:-10%;
+
+    /*margin: 10px;*/
 }
 
 #cagnotte {
+
     font-family: "numerique", serif;
     font-size: 2vw;
     background-color: black;
@@ -140,7 +160,11 @@ a {
     text-align: right;
     padding: 0 10px 0 10px;
     color: white;
-    margin-top: -100px;
+
+
+
+
+
 }
 
 
@@ -149,17 +173,19 @@ a {
 *************************************/
 
 #zoneTapis {
+    /*height: 100%;*/
     display: block;
-    height: 70vh;
+    /*height: 70vh;*/
     justify-content: center;;
 }
 
 .bot {
-
+/*height: 25%;*/
     display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: center;
+    /*margin-top: 2%;*/
 }
 
 #jeuBot img{
@@ -167,20 +193,23 @@ a {
     padding:5px;
 }
 
-
 .joueur {
+    /*height : 75%;*/
+    /*width: 100%;*/
     margin: 0;
     display: flex;
     justify-content: center;
+    /*flex-direction: row;*/
     flex-direction: column;
     align-items: center;
+
 }
 
 
 .joueur1, .joueur2{
     width: 100%;
     display: inline-flex;
-    /*flex-direction: row;*/
+    /*flex-direction: column;*/
     justify-content: center;
 }
 
@@ -204,6 +233,7 @@ a {
 }
 #messageFin, #messFinJeu1, #messFinJeu2{
     text-align: center;
+    font-family: Arial;
 }
 
 mark {
@@ -212,7 +242,8 @@ mark {
 }
 #zoneTapisBouton {
     display: flex;
-    width: 80%;
+    height: 100%;
+    width: 60%;
     flex-direction: column;
     justify-content: flex-end;
     flex: 1;
@@ -236,12 +267,12 @@ mark {
     background-image: url("../IMAGES/jouer.png");
     background-size: contain;
     background-repeat: round;
-    width: 125px;
-    height: 70px;
+    width: 100px;
+    height: 50px;
     border-radius: 10px;
     font-size: 1em;
     font-family: "numerique", serif;
-    margin: 5px 0 15px 40px;
+    /*margin: 5px 0 15px 40px;*/
     box-shadow: 0 7px 0 #439216;
     outline: none;
 }

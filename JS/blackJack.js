@@ -18,7 +18,7 @@ let mise2 = document.querySelector("#mise2");
 let annulerMise = document.querySelector("#annuler");
 let selectionJeu1 = document.querySelector("#jeu1Joueur");
 let selectionJeu2 = document.querySelector("#jeu2Joueur");
-
+let affichagePaquet = document.querySelector("#paquet");
 
 let couleurs = ["d", "s", "h", "c"];
 let valeurs = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"];
@@ -73,15 +73,33 @@ let paquet = [];
 //Création du paquet de cartes
 
 for (let i = 0; i < couleurs.length; i++) {
-
     for (let j = 0; j < valeurs.length; j++) {
         let gif = "IMAGES/" + valeurs[j] + couleurs[i] + ".gif";
+        console.log(localStorage.dos);
         let dos = "IMAGES/" + localStorage.getItem("dos") + ".jpg";
         paquet[k] = new Carte(poids[j], valeurs[j], couleurs[i], gif, dos);
         k++;
     }
 }
+afficherPaquet(52);
 
+function afficherPaquet(combien){
+    let quelleCarte;
+    let zIndex = 0;
+    affichagePaquet.innerHTML = "";
+ for (k = 0; k < combien; k++){
+     console.log(k);
+     console.log(paquet);
+     affichagePaquet.innerHTML += "<li id='carte" + k +"'><img src='" + paquet[k].dos + "'>";
+     quelleCarte = "carte" + k;
+     zIndex = 51 - k;
+     console.log(zIndex);
+     let test = document.querySelector(`#${quelleCarte}`);
+     console.log(test);
+     document.querySelector(`#${quelleCarte}`).style.zIndex = `${zIndex}`;
+     document.querySelector(`#${quelleCarte}`).style.marginLeft = "-89px";
+ }
+}
 function creerCookie(jours) {
 // Le nombre de jours est spécifié
     let expire ="";
@@ -155,6 +173,7 @@ function initialiser() {
 function distribuer(quelJeu, combien) {
     console.log("distribuer");
     niveauPaquet = indicePaquet;
+    afficherPaquet((52 - niveauPaquet));
     for (let i = niveauPaquet; i < (niveauPaquet + combien); i++) {
         quelJeu.push(paquet[i]);
         indicePaquet += 1;
@@ -522,6 +541,7 @@ demarrer.addEventListener("click", function () {
 
 rejouer.addEventListener("click", function () {
     initialiser();
+    afficherPaquet(52);
 });
 
 //Gestion des actions sur les boutons

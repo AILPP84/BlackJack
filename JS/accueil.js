@@ -111,11 +111,6 @@ boutonJouer.addEventListener('click', function (){
     animation.style.display = "none";
     document.querySelector("#valider").addEventListener("click",function(){
 
-        for (let i = 0; i < dosCarte.length; i++) {
-            if (dosCarte[i].checked){
-                localStorage.setItem("dos",`${dosCarte[i].value}_back`);
-            }
-        }
         if (cagnotte.value < 100){
             alerte = "Vous devez saisir un montant de cagnotte supérieur à 100.";
             alerteCagnotte.style.backgroundColor = "white";
