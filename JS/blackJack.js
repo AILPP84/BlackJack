@@ -57,6 +57,14 @@ let blagues = ["Deux volcans discutent :<br>" + "Mais dis-moi, t'aurais pas arr�
 trèfle ou carreau), une valeur (2,3,4.. J, Q,K et A) pour gérer le double/split et l'affichage des cartes
 et le fichier gif associé */
 
+/***********************************************************
+ * ********************* Déclaration des sons **************
+ * *********************************************************/
+let sonDistribuer = document.querySelector('#distribueCarte');
+let miseJetons = document.querySelector('#miseJetons');
+let jouerAmbiance = document.querySelector("#ambiance");
+jouerAmbiance.volume = .1;
+jouerAmbiance.play();
 
 class Carte {
     constructor(poids, valeur, couleur, gif, dos) {
@@ -171,6 +179,9 @@ function initialiser() {
 - ou = zone où seront affichées les cartes
  */
 function distribuer(quelJeu, combien) {
+    setTimeout(function() {
+        sonDistribuer.play();
+    }, 150);
     console.log("distribuer");
     niveauPaquet = indicePaquet;
     afficherPaquet((52 - niveauPaquet));
@@ -664,7 +675,7 @@ passe.addEventListener("click", function () {
 
 
 mise10.addEventListener("click", function () {
-
+    miseJetons.play();
     if (joueur.cagnotte >= 10) {
         joueur.mise += 10;
         joueur.cagnotte -= 10;
@@ -677,7 +688,7 @@ mise10.addEventListener("click", function () {
 });
 
 mise20.addEventListener("click", function () {
-
+    miseJetons.play();
     if (joueur.cagnotte >= 20) {
         joueur.mise += 20;
         joueur.cagnotte -= 20;
@@ -690,6 +701,7 @@ mise20.addEventListener("click", function () {
 });
 
 mise50.addEventListener("click", function () {
+    miseJetons.play();
     if (joueur.cagnotte >= 50) {
         joueur.mise += 50;
         joueur.cagnotte -= 50;
@@ -702,7 +714,7 @@ mise50.addEventListener("click", function () {
 });
 
 mise100.addEventListener("click", function () {
-
+    miseJetons.play();
     if (joueur.cagnotte >= 100) {
         joueur.mise += 100;
         joueur.cagnotte -= 100;
