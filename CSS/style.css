@@ -202,6 +202,9 @@ a {
 #jeu1Joueur img, #jeu2Joueur img{
     padding:5px;
 }
+#messageFin, #messFinJeu1, #messFinJeu2{
+    text-align: center;
+}
 
 mark {
     background-color: rgba(248, 248, 255, 0.5);

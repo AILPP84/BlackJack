@@ -18,6 +18,33 @@ let cagnotte = document.querySelector("#cagnotte");
 let alerteCagnotte = document.querySelector("#alerte");
 let alerte = "";
 
+function lireCookie() {
+    let c = document.cookie;    // Récupère le tableau des cookies
+    c = c.split(';');
+    localStorage.setItem('pseudo', c[0].substring(7, c[0].length));
+    localStorage.setItem('cagnotte', c[1].substring(10, c[1].length));
+    document.getElementById('pseudo').value = localStorage.pseudo;
+    document.getElementById('cagnotte').value = localStorage.cagnotte;
+// // Ajoute le signe égale virgule au nom
+//     // pour la recherche
+//     var nom2 = nom + "=";
+//     // Array contenant tous les cookies
+//     var arrCookies = document.cookie.split(';');
+//     // Cherche l'array pour le cookie en question
+//     for(var i=0;i < arrCookies.length;i++) {
+//         var a = arrCookies[i];
+// // Si c'est un espace, enlever
+//         while (a.charAt(0)==' ') {
+//             a = a.substring(1,a.length);
+//         }
+//         if (c.andexOf(nom2) == 0) {
+//             return a.substring(nom2.length,a.length);
+//         }
+//     }
+//     // Aucun cookie trouvé
+//     return null;
+}
+
 function afficheSelectionDos() {
     for (i = 0; i < tableauDosCarte.length; i++) {
         tableauDosCarte[i].style.transform = "translateY(0px)";
@@ -75,6 +102,10 @@ function rafraichirPage() {
     window.location.replace("index.html");
 };
 
+document.getElementById("charger").addEventListener('click', function(){
+    lireCookie()
+});
+
 boutonJouer.addEventListener('click', function (){
     formulaire.style.display = "flex";
     animation.style.display = "none";
@@ -102,4 +133,3 @@ boutonJouer.addEventListener('click', function (){
 
     });
 });
-
